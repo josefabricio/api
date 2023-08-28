@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static com.digitalholics.iotheraphy.Security.User.Permission.*;
 import static com.digitalholics.iotheraphy.Security.User.Role.*;
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
@@ -35,6 +37,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/api/v1/patients/**").hasRole(PATIENT.name())
+                                .requestMatchers(POST,"/api/v1/patients/**").hasAuthority(PATIENT_CREATE.name())
+                                .requestMatchers(GET,"/api/v1/patients/**").hasAuthority(PATIENT_READ.name())
                                 .requestMatchers("/api/v1/general-portal/**").hasAnyRole(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
 
                                 .requestMatchers("/api/v1/general-portal/**").hasAnyAuthority(ADMIN_READ.name(),USER_READ.name(),PATIENT_READ.name(),PHYSIOTHERAPIST_READ.name())
