@@ -34,24 +34,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authRequest ->
-                        authRequest
-                                .requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/patients/**").hasRole(PATIENT.name())
-                                .requestMatchers(POST,"/api/v1/patients/**").hasAuthority(PATIENT_CREATE.name())
-                                .requestMatchers(GET,"/api/v1/patients/**").hasAuthority(PATIENT_READ.name())
-                                .requestMatchers("/api/v1/general-portal/**").hasAnyRole(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
-
-                                .requestMatchers("/api/v1/general-portal/**").hasAnyAuthority(ADMIN_READ.name(),USER_READ.name(),PATIENT_READ.name(),PHYSIOTHERAPIST_READ.name())
-
-//                                .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
-//
-//                                .requestMatchers(GET,"/api/v1/admin/**").hasAuthority(ADMIN_READ.name())
-//                                .requestMatchers(POST,"/api/v1/admin/**").hasAuthority(ADMIN_CREATE.name())
-//                                .requestMatchers(PUT,"/api/v1/admin/**").hasAuthority(ADMIN_UPDATE.name())
-//                                .requestMatchers(DELETE,"/api/v1/admin/**").hasAuthority(ADMIN_DELETE.name())
-                                .anyRequest().authenticated()
-                        )
                 .sessionManagement(sessionManager ->
                         sessionManager
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

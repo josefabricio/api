@@ -9,12 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PatientResource {
-
-    
     private Integer id;
     private Number age;
     private String photoUrl;
     private String birthdayDate;
     private Number appointmentQuantity;
-    private User user;
 }

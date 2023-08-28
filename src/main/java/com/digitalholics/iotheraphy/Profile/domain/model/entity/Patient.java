@@ -2,6 +2,7 @@ package com.digitalholics.iotheraphy.Profile.domain.model.entity;
 
 import com.digitalholics.iotheraphy.Security.User.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +36,7 @@ public class Patient {
 
     @OneToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
 }

@@ -38,6 +38,7 @@ public enum Role {
     ),
     PATIENT(
             Set.of(
+                    USER_READ,
                     PATIENT_READ,
                     PATIENT_UPDATE,
                     PATIENT_CREATE,
