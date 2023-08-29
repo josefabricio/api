@@ -28,12 +28,13 @@ public class PatientsController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('patient:read')")
+    @PreAuthorize("hasAuthority('user:read')")
     public Page<PatientResource> getAllPatients(Pageable pageable) {
         return mapper.modelListPage(patientService.getAll(), pageable);
     }
 
     @GetMapping("{patientId}")
+    //@PreAuthorize("hasAuthority('patient:read')")
     public PatientResource getPatientById(@PathVariable Integer patientId) {
         return mapper.toResource(patientService.getById(patientId));
     }

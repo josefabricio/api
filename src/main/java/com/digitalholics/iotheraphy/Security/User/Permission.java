@@ -12,7 +12,11 @@ public enum Permission {
     ADMIN_CREATE("admin:create"),
     ADMIN_DELETE("admin:delete"),
 
+
     USER_READ("user:read"),
+    USER_UPDATE("user:update"),
+    USER_CREATE("user:create"),
+    USER_DELETE("user:delete"),
 
     PATIENT_READ("patient:read"),
     PATIENT_UPDATE("patient:update"),

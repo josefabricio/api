@@ -21,6 +21,9 @@ public enum Role {
                     ADMIN_CREATE,
                     ADMIN_DELETE,
                     USER_READ,
+                    USER_CREATE,
+                    USER_UPDATE,
+                    USER_DELETE,
                     PATIENT_READ,
                     PATIENT_UPDATE,
                     PATIENT_CREATE,
@@ -33,11 +36,15 @@ public enum Role {
     ),
     USER(
             Set.of(
+                    USER_CREATE,
+                    USER_UPDATE,
+                    USER_DELETE,
                     USER_READ
             )
     ),
     PATIENT(
             Set.of(
+                    USER_READ,
                     PATIENT_READ,
                     PATIENT_UPDATE,
                     PATIENT_CREATE,

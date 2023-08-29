@@ -17,8 +17,7 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static com.digitalholics.iotheraphy.Security.User.Permission.*;
 import static com.digitalholics.iotheraphy.Security.User.Role.*;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableWebSecurity
@@ -37,21 +36,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/patients/**").hasRole(PATIENT.name())
-                                .requestMatchers(POST,"/api/v1/patients/**").hasAuthority(PATIENT_CREATE.name())
-                                .requestMatchers(GET,"/api/v1/patients/**").hasAuthority(PATIENT_READ.name())
-                                .requestMatchers("/api/v1/general-portal/**").hasAnyRole(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
-
-                                .requestMatchers("/api/v1/general-portal/**").hasAnyAuthority(ADMIN_READ.name(),USER_READ.name(),PATIENT_READ.name(),PHYSIOTHERAPIST_READ.name())
-
-//                                .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
-//
-//                                .requestMatchers(GET,"/api/v1/admin/**").hasAuthority(ADMIN_READ.name())
-//                                .requestMatchers(POST,"/api/v1/admin/**").hasAuthority(ADMIN_CREATE.name())
-//                                .requestMatchers(PUT,"/api/v1/admin/**").hasAuthority(ADMIN_UPDATE.name())
-//                                .requestMatchers(DELETE,"/api/v1/admin/**").hasAuthority(ADMIN_DELETE.name())
+                                .requestMatchers("/api/v1/**").hasAnyRole(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(GET,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(POST,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(PUT,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(DELETE,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
                                 .anyRequest().authenticated()
-                        )
+                )
                 .sessionManagement(sessionManager ->
                         sessionManager
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -61,7 +52,7 @@ public class SecurityConfig {
                         .addLogoutHandler(logoutHandler)
                         .logoutSuccessHandler((request, response, authentication) ->
                                 SecurityContextHolder.clearContext())
-                        )
+                )
                 .build();
     }
 }
