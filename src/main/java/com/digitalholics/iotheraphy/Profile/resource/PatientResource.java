@@ -1,7 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.resource;
 
-import com.digitalholics.iotheraphy.Security.User.User;
-import com.digitalholics.iotheraphy.Security.User.UserResource;
+import com.digitalholics.iotheraphy.Security.Resource.UserResource;
 import lombok.*;
 
 @Getter

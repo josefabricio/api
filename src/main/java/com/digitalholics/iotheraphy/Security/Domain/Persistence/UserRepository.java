@@ -1,5 +1,6 @@
-package com.digitalholics.iotheraphy.Security.User;
+package com.digitalholics.iotheraphy.Security.Domain.Persistence;
 
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

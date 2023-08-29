@@ -1,6 +1,6 @@
-package com.digitalholics.iotheraphy.Security.Token;
+package com.digitalholics.iotheraphy.Security.Domain.Model.Entity;
 
-import com.digitalholics.iotheraphy.Security.User.User;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Enumeration.TokenType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,5 +1,6 @@
-package com.digitalholics.iotheraphy.Security.Token;
+package com.digitalholics.iotheraphy.Security.Domain.Persistence;
 
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
