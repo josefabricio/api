@@ -17,8 +17,7 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static com.digitalholics.iotheraphy.Security.User.Permission.*;
 import static com.digitalholics.iotheraphy.Security.User.Role.*;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableWebSecurity
@@ -34,6 +33,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authRequest ->
+                        authRequest
+                                .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/api/v1/**").hasAnyRole(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(GET,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(POST,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(PUT,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .requestMatchers(DELETE,"/api/v1/**").hasAnyAuthority(ADMIN.name(),USER.name(),PATIENT.name(),PHYSIOTHERAPIST.name())
+                                .anyRequest().authenticated()
+                )
                 .sessionManagement(sessionManager ->
                         sessionManager
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -43,7 +52,7 @@ public class SecurityConfig {
                         .addLogoutHandler(logoutHandler)
                         .logoutSuccessHandler((request, response, authentication) ->
                                 SecurityContextHolder.clearContext())
-                        )
+                )
                 .build();
     }
 }
