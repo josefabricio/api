@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 
@@ -33,11 +34,13 @@ public class PatientServiceImpl implements PatientService {
         this.validator = validator;
     }
 
+    @PreAuthorize("hasAuthority('user:read')")
     @Override
     public List<Patient> getAll() {
         return patientRepository.findAll();
     }
 
+    @PreAuthorize("hasAuthority('user:read')")
     @Override
     public Page<Patient> getAll(Pageable pageable) {
         return patientRepository.findAll(pageable);
