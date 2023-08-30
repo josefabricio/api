@@ -14,9 +14,7 @@ public interface PatientService {
     List<Patient> getAll();
     Page<Patient> getAll(Pageable pageable);
     Patient getById(Integer patientId);
-
-    
-    
+    Patient getByDni(String dni);
     Patient getByUserId(Integer userId);
     Patient create(Patient patient);
     Patient update(Integer patientId, Patient request);

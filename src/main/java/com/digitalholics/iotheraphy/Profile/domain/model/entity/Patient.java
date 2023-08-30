@@ -21,6 +21,8 @@ public class Patient {
     @GeneratedValue
     private Integer id;
 
+    private String dni;
+
     private Number age;
 
     @Column(name = "photo_url")

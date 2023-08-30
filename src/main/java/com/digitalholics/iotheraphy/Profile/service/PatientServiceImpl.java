@@ -34,13 +34,11 @@ public class PatientServiceImpl implements PatientService {
         this.validator = validator;
     }
 
-    @PreAuthorize("hasAuthority('user:read')")
     @Override
     public List<Patient> getAll() {
         return patientRepository.findAll();
     }
 
-    @PreAuthorize("hasAuthority('user:read')")
     @Override
     public Page<Patient> getAll(Pageable pageable) {
         return patientRepository.findAll(pageable);
@@ -50,6 +48,11 @@ public class PatientServiceImpl implements PatientService {
     public Patient getById(Integer patientId) {
         return patientRepository.findById(patientId)
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY, patientId));
+    }
+
+    @Override
+    public Patient getByDni(String dni) {
+        return patientRepository.findPatientByDni(dni);
     }
 
     @Override
@@ -64,6 +67,12 @@ public class PatientServiceImpl implements PatientService {
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
+
+        Patient patientWithDni = patientRepository.findPatientByDni(patient.getDni());
+
+        if(patientWithDni != null)
+            throw new ResourceValidationException(ENTITY,
+                    "A patient with the same first name already exists.");
 
         return patientRepository.save(patient);
     }

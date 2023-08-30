@@ -11,6 +11,7 @@ import lombok.*;
 public class CreatePatientResource {
 
     private Integer id;
+    private String dni;
     private Number age;
     private String photoUrl;
     private String birthdayDate;
