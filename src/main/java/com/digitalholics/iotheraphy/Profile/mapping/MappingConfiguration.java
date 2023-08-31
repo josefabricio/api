@@ -7,5 +7,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration("patientsMappingConfiguration")
 public class MappingConfiguration {
     @Bean
-    public PatientMapper patientMapper() { return new PatientMapper();}
+    public PatientMapper patientMapper() { return new PatientMapper();
 }

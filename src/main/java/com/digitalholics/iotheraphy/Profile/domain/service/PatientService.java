@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface PatientService {
-    
-    
     List<Patient> getAll();
     Page<Patient> getAll(Pageable pageable);
     Patient getById(Integer patientId);
@@ -19,6 +17,4 @@ public interface PatientService {
     Patient create(Patient patient);
     Patient update(Integer patientId, Patient request);
     ResponseEntity<?> delete(Integer patientId);
-
-    
 }
