@@ -8,9 +8,10 @@ import lombok.*;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateTherapistResource
+public class CreatePhysiotherapistResource
 {
     private Integer id;
+    private String dni;
     private String specialization;
     private Number age;
     private String location;
