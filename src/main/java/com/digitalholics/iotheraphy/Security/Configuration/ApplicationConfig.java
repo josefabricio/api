@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Security.Configuration;
 
-import com.digitalholics.iotheraphy.Security.User.UserRepository;
+import com.digitalholics.iotheraphy.Security.Domain.Persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

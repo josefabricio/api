@@ -1,7 +1,7 @@
-package com.digitalholics.iotheraphy.Security.User;
+package com.digitalholics.iotheraphy.Security.Domain.Model.Entity;
 
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
-import com.digitalholics.iotheraphy.Security.Token.Token;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Enumeration.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

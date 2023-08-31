@@ -1,4 +1,4 @@
-package com.digitalholics.iotheraphy.Security.User;
+package com.digitalholics.iotheraphy.Security.Resource;
 
 import lombok.Getter;
 import lombok.Setter;

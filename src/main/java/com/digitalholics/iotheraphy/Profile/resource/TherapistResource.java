@@ -1,11 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.resource;
 
-import com.digitalholics.iotheraphy.Security.User.User;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import lombok.*;
 
 @Getter

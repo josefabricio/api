@@ -1,4 +1,4 @@
-package com.digitalholics.iotheraphy.Security.User;
+package com.digitalholics.iotheraphy.Security.Domain.Model.Enumeration;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

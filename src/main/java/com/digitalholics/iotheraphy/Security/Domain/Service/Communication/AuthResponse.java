@@ -1,4 +1,4 @@
-package com.digitalholics.iotheraphy.Security.Auth;
+package com.digitalholics.iotheraphy.Security.Domain.Service.Communication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

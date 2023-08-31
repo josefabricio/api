@@ -1,6 +1,6 @@
-package com.digitalholics.iotheraphy.Security.Auth;
+package com.digitalholics.iotheraphy.Security.Domain.Service.Communication;
 
-import com.digitalholics.iotheraphy.Security.User.Role;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Enumeration.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

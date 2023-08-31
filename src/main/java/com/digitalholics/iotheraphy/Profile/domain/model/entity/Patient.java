@@ -1,12 +1,10 @@
 package com.digitalholics.iotheraphy.Profile.domain.model.entity;
 
-import com.digitalholics.iotheraphy.Security.User.User;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
-import javax.xml.transform.Source;
 
 
 @Getter
@@ -22,6 +20,8 @@ public class Patient {
     @Id
     @GeneratedValue
     private Integer id;
+
+    private String dni;
 
     private Number age;
 
