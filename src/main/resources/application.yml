@@ -21,3 +21,5 @@ spring:
         expiration: 86400000 # un dia
         refresh-token:
           expiration: 604800000 # 7 dias
+
+
