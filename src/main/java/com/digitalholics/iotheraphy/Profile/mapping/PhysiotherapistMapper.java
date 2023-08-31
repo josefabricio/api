@@ -1,6 +1,5 @@
 package com.digitalholics.iotheraphy.Profile.mapping;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
 import com.digitalholics.iotheraphy.Profile.resource.*;
 import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;

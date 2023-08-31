@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.resource;
 
-import com.digitalholics.iotheraphy.Security.User.User;
+import com.digitalholics.iotheraphy.Security.Resource.UserResource;
 import lombok.*;
 
 @Getter
@@ -22,5 +22,5 @@ public class CreatePhysiotherapistResource
     private Number patientQuantity;
     private Number yearsExperience;
     private Double fees;
-    private User user;
+    private UserResource user;
 }

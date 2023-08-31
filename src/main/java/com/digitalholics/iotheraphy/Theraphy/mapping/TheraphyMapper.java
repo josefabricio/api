@@ -32,8 +32,4 @@ public class TheraphyMapper implements Serializable {
         return new PageImpl<>(mapper.mapList(modelList, TheraphyResource.class), pageable, modelList.size());
     }
 
-
-
-
-
 }

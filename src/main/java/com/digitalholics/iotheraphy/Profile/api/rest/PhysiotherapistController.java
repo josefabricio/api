@@ -14,7 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/v1/physiotherapists", produces = "application/json")
+@RequestMapping(value = "/api/v1/", produces = "application/json")
 @Tag(name = "Physiotherapists", description = "Create, read, update and delete physiotherapists")
 public class PhysiotherapistController {
     private final PhysiotherapistService physiotherapistService;
@@ -26,19 +26,18 @@ public class PhysiotherapistController {
         this.mapper = mapper;
     }
 
-    @GetMapping
-    @PreAuthorize("hasAuthority('user:read')")
+    @GetMapping("allPhysiotherapist")
     public Page<PhysiotherapistResource> getAllPPhysiotherapist(Pageable pageable) {
         return mapper.modelListPage(physiotherapistService.getAll(), pageable);
     }
 
-    @GetMapping("{physiotherapistId}")
+    @GetMapping("physiotherapistById/{physiotherapistId}")
     //@PreAuthorize("hasAuthority('patient:read')")
     public PhysiotherapistResource getPhysiotherapistById(@PathVariable Integer physiotherapistId) {
         return mapper.toResource(physiotherapistService.getById(physiotherapistId));
     }
 
-    @GetMapping("userId={value}")
+    @GetMapping("physiotherapistByUserId/userId={value}")
     public PhysiotherapistResource getPhysiotherapistByUserId(@PathVariable Integer value) {
         return mapper.toResource(physiotherapistService.getByUserId(value));
     }
@@ -48,13 +47,13 @@ public class PhysiotherapistController {
         return new ResponseEntity<>(mapper.toResource(physiotherapistService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
-    @PutMapping("{physiotherapistId}")
+    @PutMapping("updatePhysiotherapistById{physiotherapistId}")
     public PhysiotherapistResource updatePhysiotherapist(@PathVariable Integer physiotherapistId,
                                          @RequestBody UpdatePhysiotherapistResource resource) {
         return mapper.toResource(physiotherapistService.update(physiotherapistId, mapper.toModel(resource)));
     }
 
-    @DeleteMapping("{physiotherapistId}")
+    @DeleteMapping("deletePhysiotherapistById{physiotherapistId}")
     public ResponseEntity<?> deletePhysiotherapist(@PathVariable Integer physiotherapistId) {
         return physiotherapistService.delete(physiotherapistId);
     }
