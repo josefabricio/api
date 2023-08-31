@@ -14,9 +14,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/v1/patients", produces = "application/json")
+@RequestMapping(value = "/api/v1/", produces = "application/json")
 @Tag(name = "Patients", description = "Create, read, update and delete patients")
-@PreAuthorize("hasRole('PATIENT')")
 public class PatientsController {
     private final PatientService patientService;
 
@@ -27,36 +26,33 @@ public class PatientsController {
         this.mapper = mapper;
     }
 
-    @GetMapping
-    @PreAuthorize("hasAuthority('user:read')")
+    @GetMapping("allPatients")
     public Page<PatientResource> getAllPatients(Pageable pageable) {
         return mapper.modelListPage(patientService.getAll(), pageable);
     }
 
-    @GetMapping("{patientId}")
-    //@PreAuthorize("hasAuthority('patient:read')")
+    @GetMapping("patientById/{patientId}")
     public PatientResource getPatientById(@PathVariable Integer patientId) {
         return mapper.toResource(patientService.getById(patientId));
     }
 
-    @GetMapping("userId={value}")
+    @GetMapping("patientByUserId/userId={value}")
     public PatientResource getPatientByUserId(@PathVariable Integer value) {
         return mapper.toResource(patientService.getByUserId(value));
     }
 
     @PostMapping("registration-patient")
-    @PreAuthorize("hasAuthority('patient:create')")
     public ResponseEntity<PatientResource> createPatient(@RequestBody CreatePatientResource resource) {
         return new ResponseEntity<>(mapper.toResource(patientService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
-    @PutMapping("{patientId}")
+    @PutMapping("updatePatientById{patientId}")
     public PatientResource updatePatient(@PathVariable Integer patientId,
                                          @RequestBody UpdatePatientResource resource) {
         return mapper.toResource(patientService.update(patientId, mapper.toModel(resource)));
     }
 
-    @DeleteMapping("{patientId}")
+    @DeleteMapping("deletePatientById/{patientId}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer patientId) {
         return patientService.delete(patientId);
     }

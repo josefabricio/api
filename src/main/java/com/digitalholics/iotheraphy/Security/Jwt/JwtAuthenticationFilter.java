@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Security.Jwt;
 
-import com.digitalholics.iotheraphy.Security.Token.TokenRepository;
+import com.digitalholics.iotheraphy.Security.Domain.Persistence.TokenRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

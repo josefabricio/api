@@ -1,12 +1,11 @@
 package com.digitalholics.iotheraphy.Security.Auth;
 
-import com.digitalholics.iotheraphy.Profile.resource.PatientResource;
-import com.digitalholics.iotheraphy.Security.User.User;
+import com.digitalholics.iotheraphy.Security.Domain.Service.Communication.AuthResponse;
+import com.digitalholics.iotheraphy.Security.Domain.Service.Communication.LoginRequest;
+import com.digitalholics.iotheraphy.Security.Domain.Service.Communication.RegisterRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

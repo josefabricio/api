@@ -1,11 +1,14 @@
 package com.digitalholics.iotheraphy.Security.Auth;
 
+import com.digitalholics.iotheraphy.Security.Domain.Service.Communication.AuthResponse;
+import com.digitalholics.iotheraphy.Security.Domain.Service.Communication.LoginRequest;
+import com.digitalholics.iotheraphy.Security.Domain.Service.Communication.RegisterRequest;
 import com.digitalholics.iotheraphy.Security.Jwt.JwtService;
-import com.digitalholics.iotheraphy.Security.Token.Token;
-import com.digitalholics.iotheraphy.Security.Token.TokenRepository;
-import com.digitalholics.iotheraphy.Security.Token.TokenType;
-import com.digitalholics.iotheraphy.Security.User.User;
-import com.digitalholics.iotheraphy.Security.User.UserRepository;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.Token;
+import com.digitalholics.iotheraphy.Security.Domain.Persistence.TokenRepository;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Enumeration.TokenType;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
+import com.digitalholics.iotheraphy.Security.Domain.Persistence.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
