@@ -4,9 +4,9 @@ import com.digitalholics.iotheraphy.Profile.mapping.PatientMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration("AppointmentsMappingConfiguration")
+@Configuration("appointmentsMappingConfiguration")
 public class MappingConfiguration {
 
     @Bean
-    public CheckRequestMapper checkRequestMapper() { return new CheckRequestMapper();}
+    public AppointmentMapper appointmentMapper() { return new AppointmentMapper();}
 }
