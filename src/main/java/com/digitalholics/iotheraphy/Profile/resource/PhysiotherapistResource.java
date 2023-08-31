@@ -1,11 +1,7 @@
 package com.digitalholics.iotheraphy.Profile.resource;
 
 import com.digitalholics.iotheraphy.Security.User.User;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import com.digitalholics.iotheraphy.Security.User.UserResource;
 import lombok.*;
 
 @Getter
@@ -13,8 +9,9 @@ import lombok.*;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class TherapistResource {
+public class PhysiotherapistResource {
     private Integer id;
+    private String dni;
     private String specialization;
     private Number age;
     private String location;
@@ -25,5 +22,5 @@ public class TherapistResource {
     private Number patientQuantity;
     private Number yearsExperience;
     private Double fees;
-    private User user;
+    private UserResource user;
 }
