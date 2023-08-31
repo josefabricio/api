@@ -1,6 +1,5 @@
 package com.digitalholics.iotheraphy.Appointment.domain.model.entity;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Theraphist;
 import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
