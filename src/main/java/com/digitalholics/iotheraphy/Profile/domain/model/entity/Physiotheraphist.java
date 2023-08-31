@@ -12,11 +12,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "theraphists")
-public class Theraphist {
+@Table(name = "physiotheraphists")
+public class Physiotheraphist {
     @Id
     @GeneratedValue
     private Integer id;
+
+    private String dni;
 
     private String specialization;
 
