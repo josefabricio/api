@@ -6,8 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateTherapistResource {
+public class UpdatePhysiotherapistResource {
     private Integer id;
+    private String dni;
     private String specialization;
     private Number age;
     private String location;
@@ -18,5 +19,4 @@ public class UpdateTherapistResource {
     private Number patientQuantity;
     private Number yearsExperience;
     private Double fees;
-    private User user;
 }
