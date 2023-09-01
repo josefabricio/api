@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.domain.model.entity;
 
-import com.digitalholics.iotheraphy.Security.User.User;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

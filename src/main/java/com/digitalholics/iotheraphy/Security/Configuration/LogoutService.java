@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Security.Configuration;
 
-import com.digitalholics.iotheraphy.Security.Token.TokenRepository;
+import com.digitalholics.iotheraphy.Security.Domain.Persistence.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

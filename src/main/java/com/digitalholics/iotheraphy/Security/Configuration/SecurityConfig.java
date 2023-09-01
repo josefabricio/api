@@ -15,8 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static com.digitalholics.iotheraphy.Security.User.Permission.*;
-import static com.digitalholics.iotheraphy.Security.User.Role.*;
+import static com.digitalholics.iotheraphy.Security.Domain.Model.Enumeration.Role.*;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration
