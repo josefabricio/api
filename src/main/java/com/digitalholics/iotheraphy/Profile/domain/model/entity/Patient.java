@@ -1,6 +1,5 @@
 package com.digitalholics.iotheraphy.Profile.domain.model.entity;
 
-import com.digitalholics.iotheraphy.Security.User.User;
 import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
 import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -52,7 +51,7 @@ public class Patient {
     private Set<Theraphy> theraphies = new HashSet<>();
 
 
-    private Patient addTheraphy(Integer physiotherapistId,String theraphyName, String appointmentQuantity, String appointmentGap, Date startAt, Date finishAt){
+    private Patient addTheraphy(String theraphyName, String appointmentQuantity, String appointmentGap, Date startAt, Date finishAt){
 
         theraphies.add(new Theraphy()
                 .withTheraphyName(theraphyName)
@@ -60,6 +59,7 @@ public class Patient {
                 .withAppointmentQuantity(appointmentQuantity)
                 .withStartAt(startAt)
                 .withAppointmentGap(appointmentGap)
+       //         .withTheraphist(physiotherapistId)
                 .withPatient(this));
 
         return this;

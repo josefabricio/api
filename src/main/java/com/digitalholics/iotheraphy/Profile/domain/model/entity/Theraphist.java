@@ -1,10 +1,16 @@
 package com.digitalholics.iotheraphy.Profile.domain.model.entity;
 
+import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
 import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
+import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -48,4 +54,27 @@ public class Theraphist {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, mappedBy = "theraphist")
+    private Set<Theraphy> theraphies = new HashSet<>();
+
+    private Theraphist addTheraphy(String theraphyName, String appointmentQuantity, String appointmentGap, Date startAt, Date finishAt){
+
+        theraphies.add(new Theraphy()
+                .withTheraphyName(theraphyName)
+                .withFinishAt(finishAt)
+                .withAppointmentQuantity(appointmentQuantity)
+                .withStartAt(startAt)
+                .withAppointmentGap(appointmentGap)
+             //   .withPatient( patientId)
+                .withTheraphist(this));
+
+        return this;
+    }
+
+
+
+
 }

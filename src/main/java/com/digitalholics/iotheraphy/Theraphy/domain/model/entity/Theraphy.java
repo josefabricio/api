@@ -2,6 +2,7 @@ package com.digitalholics.iotheraphy.Theraphy.domain.model.entity;
 
 import com.digitalholics.iotheraphy.Appointment.domain.model.entity.Appointment;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Theraphist;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -65,6 +66,9 @@ public class Theraphy {
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "theraphist_id", nullable = false)
+    private Theraphist theraphist;
 
 
 
