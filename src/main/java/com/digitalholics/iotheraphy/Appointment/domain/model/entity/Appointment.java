@@ -55,4 +55,6 @@ public class Appointment {
     @JoinColumn(name = "theraphy_id", nullable = false)
     private Theraphy theraphy;
 
+
+
 }
