@@ -17,6 +17,8 @@ public interface PhysiotherapistRepository extends JpaRepository<Physiotheraphis
     """)
     Physiotheraphist findByFirstName(String firstname);
 
+    Physiotheraphist findPhysiotherapistByDni(String dni);
+
     Optional<Physiotheraphist> findByUserId(Integer userId);
 
 }

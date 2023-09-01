@@ -22,5 +22,5 @@ public class CreatePhysiotherapistResource
     private Number patientQuantity;
     private Number yearsExperience;
     private Double fees;
-    private UserResource user;
+   // private UserResource user;
 }

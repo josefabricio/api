@@ -48,18 +48,29 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY, patientId));    }
 
     @Override
+    public Physiotheraphist getByDni(String dni) {
+        return physiotherapistRepository.findPhysiotherapistByDni(dni);
+    }
+
+    @Override
     public Physiotheraphist getByUserId(Integer userId) {
         return physiotherapistRepository.findByUserId(userId)
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY, userId));    }
 
     @Override
-    public Physiotheraphist create(Physiotheraphist patient) {
-        Set<ConstraintViolation<Physiotheraphist>> violations = validator.validate(patient);
+    public Physiotheraphist create(Physiotheraphist physiotheraphist) {
+        Set<ConstraintViolation<Physiotheraphist>> violations = validator.validate(physiotheraphist);
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        return physiotherapistRepository.save(patient);    }
+        Physiotheraphist physiotherapistWithDni = physiotherapistRepository.findPhysiotherapistByDni(physiotheraphist.getDni());
+
+        if(physiotherapistWithDni != null)
+            throw new ResourceValidationException(ENTITY,
+                    "A physiotherapist with the same dni already exists.");
+
+        return physiotherapistRepository.save(physiotheraphist);    }
 
     @Override
     public Physiotheraphist update(Integer patientId, Physiotheraphist request) {
