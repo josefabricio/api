@@ -37,6 +37,16 @@ public class TheraphiesController {
         return mapper.toResource(theraphyService.getById(theraphyId));
     }
 
+    @GetMapping("{patientId}")
+    public Page<TheraphyResource> getTheraphyByPatientId(@PathVariable Integer patientId, Pageable pageable) {
+        return mapper.modelListPage(theraphyService.getTherapiesByPatientId(patientId), pageable);
+    }
+
+    @GetMapping("{physiotherapistId}")
+    public Page<TheraphyResource> getTheraphyByPhysiotherapistId(@PathVariable Integer physiotherapistId, Pageable pageable) {
+        return mapper.modelListPage(theraphyService.getTherapiesByPhysiotherapistId(physiotherapistId), pageable);
+    }
+
     @PostMapping
     public ResponseEntity<TheraphyResource> createTheraphy(@RequestBody CreateTheraphyResource resource) {
         return new ResponseEntity<>(mapper.toResource(theraphyService.create(mapper.toModel(resource))), HttpStatus.CREATED);

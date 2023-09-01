@@ -41,5 +41,7 @@ public class CreateAppointmentResource {
     private String place;
 
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "theraphy_id", nullable = false)
     private Theraphy theraphy;
 }

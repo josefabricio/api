@@ -86,4 +86,14 @@ public class TheraphyServiceImpl implements TheraphyService {
                     return ResponseEntity.ok().build();
                 }).orElseThrow(()-> new ResourceNotFoundException(ENTITY, theraphyId));
     }
+
+    @Override
+    public List<Theraphy> getTherapiesByPatientId(Integer patientId) {
+        return theraphyRepository.findTheraphiesByPatientId(patientId);
+    }
+
+    @Override
+    public List<Theraphy> getTherapiesByPhysiotherapistId(Integer physiotherapistId) {
+        return theraphyRepository.findTheraphiesByTheraphistId(physiotherapistId);
+    }
 }

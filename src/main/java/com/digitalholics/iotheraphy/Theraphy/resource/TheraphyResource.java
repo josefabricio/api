@@ -1,9 +1,8 @@
 package com.digitalholics.iotheraphy.Theraphy.resource;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Theraphist;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -32,4 +31,9 @@ public class TheraphyResource {
     private Date startAt;
 
     private Date finishAt;
+
+
+    private Patient patient;
+
+    private Theraphist theraphist;
 }

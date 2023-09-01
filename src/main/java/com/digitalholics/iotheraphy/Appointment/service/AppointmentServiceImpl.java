@@ -45,6 +45,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public Appointment getTheraphyByAppointmentId(Integer theraphyId) {
+        return appointmentRepository.findAppointmentByTheraphy(theraphyId);
+    }
+
+    @Override
     public Appointment create(Appointment appointment) {
         Set<ConstraintViolation<Appointment>> violations = validator.validate(appointment);
 

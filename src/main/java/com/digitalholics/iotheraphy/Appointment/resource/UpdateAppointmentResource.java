@@ -1,8 +1,8 @@
 package com.digitalholics.iotheraphy.Appointment.resource;
 
+import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -39,4 +39,9 @@ public class UpdateAppointmentResource {
     @NotNull
     @NotBlank
     private String place;
+
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "theraphy_id", nullable = false)
+    private Theraphy theraphy;
 }

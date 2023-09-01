@@ -21,4 +21,8 @@ public interface TheraphyService {
 
     ResponseEntity<?> delete(Integer theraphyId);
 
+    List<Theraphy> getTherapiesByPatientId(Integer patientId);
+
+    List<Theraphy> getTherapiesByPhysiotherapistId(Integer physiotherapistId);
+
 }

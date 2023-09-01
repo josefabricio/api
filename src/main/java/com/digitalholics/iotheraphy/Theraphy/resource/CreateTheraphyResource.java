@@ -1,7 +1,12 @@
 package com.digitalholics.iotheraphy.Theraphy.resource;
 
 
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Theraphist;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -43,4 +48,14 @@ public class CreateTheraphyResource {
     @NotBlank
     @Column(name = "finish_at")
     private Date finishAt;
+
+
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "patient_id", nullable = false)
+    private Patient patient;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "theraphist_id", nullable = false)
+    private Theraphist theraphist;
 }

@@ -57,7 +57,7 @@ public class Theraphist {
 
 
     @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "theraphist")
+            fetch = FetchType.EAGER, mappedBy = "theraphistId")
     private Set<Theraphy> theraphies = new HashSet<>();
 
     private Theraphist addTheraphy(String theraphyName, String appointmentQuantity, String appointmentGap, Date startAt, Date finishAt){
@@ -69,7 +69,7 @@ public class Theraphist {
                 .withStartAt(startAt)
                 .withAppointmentGap(appointmentGap)
              //   .withPatient( patientId)
-                .withTheraphist(this));
+                .withTheraphistId(this));
 
         return this;
     }

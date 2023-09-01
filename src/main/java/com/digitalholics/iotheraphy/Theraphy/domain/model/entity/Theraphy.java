@@ -56,19 +56,19 @@ public class Theraphy {
     private Date finishAt;
 
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "theraphy")
-    private Set<Appointment> appointments = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER, mappedBy = "theraphy")
+//    private Set<Appointment> appointments = new HashSet<>();
 
 
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "patient_id", nullable = false)
-    private Patient patient;
+    private Patient patientId;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "theraphist_id", nullable = false)
-    private Theraphist theraphist;
+    private Theraphist theraphistId;
 
 
 

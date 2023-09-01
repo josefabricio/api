@@ -35,6 +35,11 @@ public class AppointmentsController {
         return mapper.toResource(appointmentService.getById(appointmentId));
     }
 
+    @GetMapping("appointment/{theraphyId}")
+    public AppointmentResource getAppointmentByTheraphyId(@PathVariable Integer theraphyId) {
+        return mapper.toResource(appointmentService.getTheraphyByAppointmentId(theraphyId));
+    }
+
     @PostMapping
     public ResponseEntity<AppointmentResource> createAppointment(@RequestBody CreateAppointmentResource resource) {
         return new ResponseEntity<>(mapper.toResource(appointmentService.create(mapper.toModel(resource))), HttpStatus.CREATED);
