@@ -1,11 +1,10 @@
 package com.digitalholics.iotheraphy.Profile.service;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
-import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
-import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
 import com.digitalholics.iotheraphy.Profile.domain.service.PhysiotherapistService;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
+import com.digitalholics.iotheraphy.Security.Domain.Persistence.UserRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;
@@ -13,9 +12,13 @@ import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -24,11 +27,13 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
     private final PhysiotherapistRepository physiotherapistRepository;
 
+    private final UserRepository userRepository;
 
     private final Validator validator;
 
-    public PhysiotherapistServiceImpl(PhysiotherapistRepository physiotherapistRepository, Validator validator) {
+    public PhysiotherapistServiceImpl(PhysiotherapistRepository physiotherapistRepository, UserRepository userRepository, Validator validator) {
         this.physiotherapistRepository = physiotherapistRepository;
+        this.userRepository = userRepository;
         this.validator = validator;
     }
 
@@ -63,6 +68,15 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Optional<User> userOptional = userRepository.findByUsername(username);
+
+        User user = userOptional.orElseThrow(() -> new NotFoundException("User not found for username: " + username));
+
+        physiotheraphist.setUser(user);
 
         Physiotheraphist physiotherapistWithDni = physiotherapistRepository.findPhysiotherapistByDni(physiotheraphist.getDni());
 
