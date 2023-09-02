@@ -23,4 +23,7 @@ public interface AppointmentService {
     ResponseEntity<?> delete(Integer appointmentId);
 
 
+    List<Appointment> getAppointmentsByTheraphyByPatientId(Integer patientId);
+    List<Appointment> getAppointmentsByTheraphyByPhysiotherapistId(Integer physiotherapistId);
+
 }

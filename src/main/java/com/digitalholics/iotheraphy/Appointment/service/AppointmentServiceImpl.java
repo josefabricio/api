@@ -90,4 +90,14 @@ public class AppointmentServiceImpl implements AppointmentService {
             return ResponseEntity.ok().build();
         }).orElseThrow(()-> new ResourceNotFoundException(ENTITY,appointmentId));
     }
+
+    @Override
+    public List<Appointment> getAppointmentsByTheraphyByPatientId(Integer patientId) {
+        return appointmentRepository.findAppointmentsByTheraphyByPatientId(patientId);
+    }
+
+    @Override
+    public List<Appointment> getAppointmentsByTheraphyByPhysiotherapistId(Integer physiotherapistId) {
+        return appointmentRepository.findAppointmentsByTheraphyByPhysiotherapistId(physiotherapistId);
+    }
 }

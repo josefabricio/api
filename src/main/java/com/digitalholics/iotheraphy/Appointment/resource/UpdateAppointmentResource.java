@@ -29,7 +29,7 @@ public class UpdateAppointmentResource {
 
     @NotNull
     @NotBlank
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
 
     @NotNull
@@ -40,8 +40,8 @@ public class UpdateAppointmentResource {
     @NotBlank
     private String place;
 
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "theraphy_id", nullable = false)
+//
+//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+//    @JoinColumn(name = "theraphy_id", nullable = false)
     private Theraphy theraphy;
 }

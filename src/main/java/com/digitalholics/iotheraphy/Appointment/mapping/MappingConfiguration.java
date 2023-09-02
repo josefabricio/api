@@ -9,4 +9,7 @@ public class MappingConfiguration {
 
     @Bean
     public AppointmentMapper appointmentMapper() { return new AppointmentMapper();}
+
+    @Bean
+    public CheckRequestMapper checkRequestMapper(){return  new CheckRequestMapper();}
 }
