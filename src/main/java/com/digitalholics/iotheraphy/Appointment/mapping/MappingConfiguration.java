@@ -8,7 +8,5 @@ import org.springframework.context.annotation.Configuration;
 public class MappingConfiguration {
 
     @Bean
-    public CheckRequestMapper checkRequestMapper() { return new CheckRequestMapper();}
-    @Bean
     public AppointmentMapper appointmentMapper() { return new AppointmentMapper();}
 }
