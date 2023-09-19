@@ -34,6 +34,8 @@ public class Patient {
 
     private Number appointmentQuantity;
 
+    private String location;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
