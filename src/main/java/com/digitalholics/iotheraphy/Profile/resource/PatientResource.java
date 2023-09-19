@@ -15,5 +15,6 @@ public class PatientResource {
     private String photoUrl;
     private String birthdayDate;
     private Number appointmentQuantity;
+    private String location;
     private UserResource user;
 }
