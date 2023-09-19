@@ -104,6 +104,7 @@ public class PatientServiceImpl implements PatientService {
                                 patient.withAge(request.getAge()).
                                         withPhotoUrl(request.getPhotoUrl()).
                                         withBirthdayDate(request.getBirthdayDate()).
+                                        withLocation(request.getLocation()).
                                         withAppointmentQuantity(request.getAppointmentQuantity())
                                 ))
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY,patientId));
