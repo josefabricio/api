@@ -12,7 +12,7 @@ public interface CheckRequestRepository extends JpaRepository<CheckRequest,Integ
 
     List<CheckRequest> findByPatientId(Integer patientId);
 
-    //Optional<CheckRequest> findByTherapistId(Integer therapistId);
+    //List<CheckRequest> findByTherapistId(Integer therapistId);
 
-    List<CheckRequest> findCheckRequestsByAccepted(Boolean status);
+    List<CheckRequest> findByAccepted(Boolean status);
 }

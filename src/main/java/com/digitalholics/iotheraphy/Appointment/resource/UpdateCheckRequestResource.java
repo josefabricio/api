@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 public class UpdateCheckRequestResource {
     private Integer id;
-    private String therapist;
-    private PatientResource patient;
     private Boolean accepted;
     private String topic;
     private String date;

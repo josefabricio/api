@@ -14,8 +14,8 @@ import lombok.*;
 public class CreateCheckRequestResource {
 
     private Integer id;
-    private String therapist;
-    private PatientResource patient;
+    private Integer therapistId;
+    private Integer patientId;
     private Boolean accepted;
     private String topic;
     private String date;

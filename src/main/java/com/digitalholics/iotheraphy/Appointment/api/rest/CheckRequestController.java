@@ -56,7 +56,7 @@ public class CheckRequestController {
 
     @PostMapping("create-checkRequest")
     public ResponseEntity<CheckRequestResource> createCheckRequest(@RequestBody CreateCheckRequestResource resource) {
-        return new ResponseEntity<>(mapper.toResource(checkRequestService.create(mapper.toModel(resource))), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toResource(checkRequestService.create(resource)), HttpStatus.CREATED);
     }
 
     @PutMapping("updateCheckRequestById{checkRequestId}")

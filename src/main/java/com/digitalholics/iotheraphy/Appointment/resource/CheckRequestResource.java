@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 public class CheckRequestResource {
     private Integer id;
-    private String therapist;
+    private Integer therapist;
     private PatientResource patient;
     private Boolean accepted;
     private String topic;

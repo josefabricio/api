@@ -3,6 +3,7 @@ package com.digitalholics.iotheraphy.Appointment.service;
 import com.digitalholics.iotheraphy.Appointment.domain.model.entity.CheckRequest;
 import com.digitalholics.iotheraphy.Appointment.domain.persistence.CheckRequestRepository;
 import com.digitalholics.iotheraphy.Appointment.domain.service.CheckRequestService;
+import com.digitalholics.iotheraphy.Appointment.resource.CreateCheckRequestResource;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
@@ -84,7 +85,7 @@ public class CheckRequestServiceImpl implements CheckRequestService {
 
     @Override
     public List<CheckRequest> getByStatus(Boolean status) {
-        List<CheckRequest> checkRequests = checkRequestRepository.findCheckRequestsByAccepted(status);
+        List<CheckRequest> checkRequests = checkRequestRepository.findByAccepted(status);
 
         if(checkRequests.isEmpty())
             throw new ResourceValidationException(ENTITY,
@@ -94,16 +95,28 @@ public class CheckRequestServiceImpl implements CheckRequestService {
     }
 
     @Override
-    public CheckRequest create(CheckRequest checkRequest) {
-        Set<ConstraintViolation<CheckRequest>> violations = validator.validate(checkRequest);
+    public CheckRequest create(CreateCheckRequestResource checkRequestResource) {
+        Set<ConstraintViolation<CreateCheckRequestResource>> violations = validator.validate(checkRequestResource);
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        Optional<Patient> patient = patientRepository.findById(checkRequest.getPatient().getId());
-        //Optional<Therapist> therapist = therapistRepository.findById(checkRequest.getTherapist().getId());
+        Optional<Patient> patientOptional = patientRepository.findById(checkRequestResource.getPatientId());
+
+        Patient patient = patientOptional.orElseThrow(() -> new NotFoundException("Patient not found with ID: " + checkRequestResource.getPatientId()));
 
 
+        //Optional<Therapist> therapistOptional = therapistRepository.findById(checkRequestResource.getTherapistId());
+        //Therapist therapist = therapistOptional.orElseThrow(() -> new NotFoundException("Therapist not found with ID: " + checkRequestResource.getTherapistId()));
+
+        CheckRequest checkRequest = new CheckRequest();
+        checkRequest.setTherapist(checkRequestResource.getTherapistId());
+        checkRequest.setPatient(patient);
+        checkRequest.setAccepted(checkRequestResource.getAccepted());
+        checkRequest.setTopic(checkRequestResource.getTopic());
+        checkRequest.setDate(checkRequestResource.getDate());
+        checkRequest.setHour(checkRequestResource.getHour());
+        checkRequest.setPlace(checkRequestResource.getPlace());
 
         return checkRequestRepository.save(checkRequest);
 
