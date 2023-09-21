@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.education.resource;
 
+import com.digitalholics.iotheraphy.Profile.resource.PhysiotherapistResource;
 import lombok.*;
 
 @Getter
@@ -9,9 +10,9 @@ import lombok.*;
 @AllArgsConstructor
 public class CertificationResource {
     private Integer id;
-    private Integer physiotherapistId;
+    private PhysiotherapistResource physiotherapist;
     private String title;
     private String school;
     private Integer year;
-    private String photoUrl;
+
 }

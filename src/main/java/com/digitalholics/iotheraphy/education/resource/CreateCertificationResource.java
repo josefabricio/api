@@ -13,5 +13,4 @@ public class CreateCertificationResource {
     private String title;
     private String school;
     private Integer year;
-    private String photoUrl;
 }
