@@ -1,5 +1,7 @@
 package com.digitalholics.iotheraphy.education.domain.model.entity;
 
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -17,8 +19,10 @@ public class Certification {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "physiotherapist_id")
-    private Integer physiotherapistId;
+    @ManyToOne
+    @JoinColumn(name = "physiotherapist_id")
+    @JsonIgnore
+    private Physiotheraphist physiotheraphist;
 
     @Size(max = 50)
     private String title;
@@ -27,9 +31,6 @@ public class Certification {
     private String school;
 
     private Integer year;
-
-    @Column(name = "photo_url")
-    private String photoUrl;
 
 
 
