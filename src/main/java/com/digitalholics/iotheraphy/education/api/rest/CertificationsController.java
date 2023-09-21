@@ -36,15 +36,19 @@ public class CertificationsController {
         return mapper.toResource(certificationService.getById(certificationId));
     }
 
+    @GetMapping("certificationsByPhysiotherapistId/{physiotherapistId}")
+    public Page<CertificationResource> getCertificationsByPhysiotherapistId(@PathVariable Integer physiotherapistId, Pageable pageable) {
+        return mapper.modelListPage(certificationService.getByPhysiotherapistId(physiotherapistId), pageable);
+    }
 
     @PostMapping("registration-certification")
     public ResponseEntity<CertificationResource> createCertification(@RequestBody CreateCertificationResource resource) {
-        return new ResponseEntity<>(mapper.toResource(certificationService.create(mapper.toModel(resource))), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toResource(certificationService.create(resource)), HttpStatus.CREATED);
     }
 
     @PutMapping("updateCertificationById{certificationId}")
     public CertificationResource updateCertification(@PathVariable Integer certificationId,
-                                         @RequestBody UpdateCertificationResource resource) {
+                                                     @RequestBody UpdateCertificationResource resource) {
         return mapper.toResource(certificationService.update(certificationId, mapper.toModel(resource)));
     }
 
