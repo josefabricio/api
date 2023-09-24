@@ -14,7 +14,7 @@ public interface AppointmentService {
 
     Appointment getById(Integer appointmentId);
 
-    Appointment getTheraphyByAppointmentId(Integer appointmentId);
+    Appointment getAppointmentByTheraphyId(Integer theraphyId);
 
     Appointment create(Appointment appointment);
 

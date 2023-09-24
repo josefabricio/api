@@ -37,16 +37,16 @@ public class AppointmentsController {
 
     @GetMapping("appointment/{theraphyId}")
     public AppointmentResource getAppointmentByTheraphyId(@PathVariable Integer theraphyId) {
-        return mapper.toResource(appointmentService.getTheraphyByAppointmentId(theraphyId));
+        return mapper.toResource(appointmentService.getAppointmentByTheraphyId(theraphyId));
     }
 
 
-    @GetMapping("appointment/theraphy/{patientId}")
+    @GetMapping("appointment/theraphy-patient/{patientId}")
     public Page<AppointmentResource> getAppointmentsByTheraphyByPatientId(@PathVariable Integer patientId, Pageable pageable) {
         return mapper.modelListPage(appointmentService.getAppointmentsByTheraphyByPatientId(patientId),pageable);
     }
 
-    @GetMapping("appointment/theraphy/{physiotherapistId}")
+    @GetMapping("appointment/theraphy-physiotherapist/{physiotherapistId}")
     public Page<AppointmentResource> getAppointmentsByTheraphyByPhysiotherapistId(@PathVariable Integer physiotherapistId, Pageable pageable) {
         return mapper.modelListPage(appointmentService.getAppointmentsByTheraphyByPhysiotherapistId(physiotherapistId), pageable);
     }
