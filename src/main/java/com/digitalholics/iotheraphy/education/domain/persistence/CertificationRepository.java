@@ -12,5 +12,5 @@ public interface CertificationRepository extends JpaRepository<Certification,Int
 
     Optional<Certification> findById(Integer certificationId);
 
-    List<Certification> findByPhysiotherapistId(Integer physiotherapistId);
+    List<Certification> findByPhysiotheraphistId(Integer physiotherapistId);
 }

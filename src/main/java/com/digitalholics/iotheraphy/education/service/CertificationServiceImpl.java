@@ -54,7 +54,7 @@ public class CertificationServiceImpl implements CertificationService {
 
     @Override
     public List<Certification> getByPhysiotherapistId(Integer physiotherapistId) {
-        List<Certification> certifications = certificationRepository.findByPhysiotherapistId(physiotherapistId);
+        List<Certification> certifications = certificationRepository.findByPhysiotheraphistId(physiotherapistId);
 
         if(certifications.isEmpty())
             throw new ResourceValidationException(ENTITY,
