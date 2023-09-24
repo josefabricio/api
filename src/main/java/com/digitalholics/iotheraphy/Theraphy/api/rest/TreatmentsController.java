@@ -25,7 +25,7 @@ public class TreatmentsController {
         this.mapper = mapper;
     }
 
-    @GetMapping
+    @GetMapping("allTreatment")
     public Page<TreatmentResource> getAllTreatments(Pageable pageable) {
         return mapper.modelListPage(treatmentService.getAll(), pageable);
     }
@@ -42,7 +42,7 @@ public class TreatmentsController {
     }
 
 
-    @PostMapping
+    @PostMapping("create-treatment")
     public ResponseEntity<TreatmentResource> createTreatment(@RequestBody CreateTreatmentResource resource) {
         return new ResponseEntity<>(mapper.toResource(treatmentService.create(resource)), HttpStatus.CREATED);
     }

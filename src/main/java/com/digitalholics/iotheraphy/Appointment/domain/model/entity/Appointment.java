@@ -25,7 +25,6 @@ public class Appointment {
     private Integer id;
 
     @NotNull
-    @NotBlank
     private Boolean done;
 
     @NotNull
@@ -39,11 +38,11 @@ public class Appointment {
     @NotNull
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date;
+    private String date;
 
     @NotNull
     @NotBlank
-    private Date hour;
+    private String hour;
 
     @NotNull
     @NotBlank

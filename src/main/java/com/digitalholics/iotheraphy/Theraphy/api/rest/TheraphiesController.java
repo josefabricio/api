@@ -27,7 +27,7 @@ public class TheraphiesController {
         this.mapper = mapper;
     }
 
-    @GetMapping
+    @GetMapping("allTheraphies")
     public Page<TheraphyResource> getAllTheraphies(Pageable pageable) {
         return mapper.modelListPage(theraphyService.getAll(), pageable);
     }
@@ -37,7 +37,7 @@ public class TheraphiesController {
         return mapper.toResource(theraphyService.getById(theraphyId));
     }
 
-    @PostMapping
+    @PostMapping("create-theraphy")
     public ResponseEntity<TheraphyResource> createTheraphy(@RequestBody CreateTheraphyResource resource) {
         return new ResponseEntity<>(mapper.toResource(theraphyService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }

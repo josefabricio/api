@@ -25,9 +25,9 @@ public class UpdateAppointmentResource {
     private String diagnosis;
 
 
-    private Date date;
+    private String date;
 
-    private Date hour;
+    private String hour;
 
     private String place;
 }

@@ -25,7 +25,7 @@ public class AppointmentsController {
         this.mapper = mapper;
     }
 
-    @GetMapping
+    @GetMapping("allAppointments")
     public Page<AppointmentResource> getAllAppointments(Pageable pageable) {
         return mapper.modelListPage(appointmentService.getAll(), pageable);
     }
@@ -53,7 +53,7 @@ public class AppointmentsController {
 
 
 
-    @PostMapping
+    @PostMapping("create_appintment")
     public ResponseEntity<AppointmentResource> createAppointment(@RequestBody CreateAppointmentResource resource) {
         return new ResponseEntity<>(mapper.toResource(appointmentService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }

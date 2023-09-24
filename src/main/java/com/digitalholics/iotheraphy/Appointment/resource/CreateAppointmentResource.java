@@ -2,6 +2,7 @@ package com.digitalholics.iotheraphy.Appointment.resource;
 
 
 import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
+import com.digitalholics.iotheraphy.Theraphy.resource.TheraphyResource;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -23,11 +24,13 @@ public class CreateAppointmentResource {
     private String topic;
     private String diagnosis;
 
-    private Date date;
+    private String date;
 
-    private Date hour;
+    private String hour;
 
     private String place;
+
+    private TheraphyResource theraphy;
 
 
 

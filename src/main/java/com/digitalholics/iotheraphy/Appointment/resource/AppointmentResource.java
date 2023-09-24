@@ -1,6 +1,7 @@
 package com.digitalholics.iotheraphy.Appointment.resource;
 
 
+import com.digitalholics.iotheraphy.Theraphy.resource.TheraphyResource;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -17,15 +18,17 @@ public class AppointmentResource {
     private Integer id;
 
 
-    private boolean done;
+    private Boolean done;
 
     private String topic;
     private String diagnosis;
 
 
-    private Date date;
+    private String date;
 
-    private Date hour;
+    private String hour;
 
     private String place;
+
+    private TheraphyResource theraphy;
 }

@@ -48,12 +48,12 @@ public class Theraphy {
     @NotNull
     @NotBlank
     @Column(name = "start_at")
-    private Date startAt;
+    private String startAt;
 
     @NotNull
     @NotBlank
     @Column(name = "finish_at")
-    private Date finishAt;
+    private String finishAt;
 
 
     @OneToMany(cascade = CascadeType.ALL,
@@ -65,13 +65,10 @@ public class Theraphy {
     private Set<Treatment> treatments = new HashSet<>();
 
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "patient_id", nullable = false)
+    @ManyToOne
     private Patient patientId;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "theraphist_id", nullable = false)
+    @ManyToOne
     private Physiotheraphist physiotheraphistId;
-
 
 }

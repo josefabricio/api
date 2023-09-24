@@ -15,7 +15,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class TreatmentResource {
 
-
     private Integer id;
     private Integer theraphyId;
     private String videoUrl;

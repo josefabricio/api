@@ -1,6 +1,8 @@
 package com.digitalholics.iotheraphy.Theraphy.resource;
 
 
+import com.digitalholics.iotheraphy.Profile.resource.PatientResource;
+import com.digitalholics.iotheraphy.Profile.resource.PhysiotherapistResource;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -37,10 +39,14 @@ public class CreateTheraphyResource {
     @NotNull
     @NotBlank
     @Column(name = "start_at")
-    private Date startAt;
+    private String startAt;
 
     @NotNull
     @NotBlank
     @Column(name = "finish_at")
-    private Date finishAt;
+    private String finishAt;
+
+
+    private PatientResource patient;
+    private PhysiotherapistResource physiotherapist;
 }
