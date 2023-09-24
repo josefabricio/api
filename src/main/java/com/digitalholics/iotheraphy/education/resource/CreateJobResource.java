@@ -11,5 +11,5 @@ public class CreateJobResource {
     private Integer id;
     private Integer physiotherapistId;
     private String position;
-    private String Organization;
+    private String organization;
 }

@@ -38,10 +38,10 @@ public class UpdateTheraphyResource {
     @NotNull
     @NotBlank
     @Column(name = "start_at")
-    private Date startAt;
+    private String startAt;
 
     @NotNull
     @NotBlank
     @Column(name = "finish_at")
-    private Date finishAt;
+    private String finishAt;
 }
