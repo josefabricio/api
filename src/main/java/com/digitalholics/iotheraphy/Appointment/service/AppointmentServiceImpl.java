@@ -45,6 +45,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public Appointment getTheraphyByAppointmentId(Integer appointmentId) {
+        return appointmentRepository.findAppointmentByTheraphy(appointmentId);
+    }
+
+    @Override
     public Appointment create(Appointment appointment) {
         Set<ConstraintViolation<Appointment>> violations = validator.validate(appointment);
 
@@ -84,5 +89,15 @@ public class AppointmentServiceImpl implements AppointmentService {
             appointmentRepository.delete(appointment);
             return ResponseEntity.ok().build();
         }).orElseThrow(()-> new ResourceNotFoundException(ENTITY,appointmentId));
+    }
+
+    @Override
+    public List<Appointment> getAppointmentsByTheraphyByPatientId(Integer patientId) {
+        return appointmentRepository.findAppointmentsByTheraphyByPatientId(patientId);
+    }
+
+    @Override
+    public List<Appointment> getAppointmentsByTheraphyByPhysiotherapistId(Integer physiotherapistId) {
+        return appointmentRepository.findAppointmentsByTheraphyByPhysiotherapistId(physiotherapistId);
     }
 }

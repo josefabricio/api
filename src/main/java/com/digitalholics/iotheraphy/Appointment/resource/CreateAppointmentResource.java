@@ -17,29 +17,18 @@ import java.util.Date;
 @AllArgsConstructor
 public class CreateAppointmentResource {
 
-
-    @NotNull
-    @NotBlank
+    private Integer id;
     private Boolean done;
 
-    @NotNull
-    @NotBlank
     private String topic;
     private String diagnosis;
 
-    @NotNull
-    @NotBlank
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
 
-    @NotNull
-    @NotBlank
     private Date hour;
 
-    @NotNull
-    @NotBlank
     private String place;
 
 
-    private Theraphy theraphy;
+
 }
