@@ -1,10 +1,14 @@
 package com.digitalholics.iotheraphy.Profile.domain.model.entity;
 
 import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
+import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -40,5 +44,10 @@ public class Patient {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, mappedBy = "patientId")
+    private Set<Theraphy> theraphies = new HashSet<>();
 
 }

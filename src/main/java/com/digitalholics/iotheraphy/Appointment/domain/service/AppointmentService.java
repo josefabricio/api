@@ -14,11 +14,16 @@ public interface AppointmentService {
 
     Appointment getById(Integer appointmentId);
 
+    Appointment getAppointmentByTheraphyId(Integer theraphyId);
+
     Appointment create(Appointment appointment);
 
     Appointment update(Integer appointmentId, Appointment request);
 
     ResponseEntity<?> delete(Integer appointmentId);
 
+
+    List<Appointment> getAppointmentsByTheraphyByPatientId(Integer patientId);
+    List<Appointment> getAppointmentsByTheraphyByPhysiotherapistId(Integer physiotherapistId);
 
 }

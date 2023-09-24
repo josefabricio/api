@@ -1,6 +1,8 @@
 package com.digitalholics.iotheraphy.Theraphy.domain.model.entity;
 
 import com.digitalholics.iotheraphy.Appointment.domain.model.entity.Appointment;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -57,5 +59,19 @@ public class Theraphy {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, mappedBy = "theraphy")
     private Set<Appointment> appointments = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, mappedBy = "theraphy")
+    private Set<Treatment> treatments = new HashSet<>();
+
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "patient_id", nullable = false)
+    private Patient patientId;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "theraphist_id", nullable = false)
+    private Physiotheraphist physiotheraphistId;
+
 
 }
