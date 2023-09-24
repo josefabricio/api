@@ -53,7 +53,7 @@ public class AppointmentsController {
 
 
 
-    @PostMapping("create_appintment")
+    @PostMapping("create_appointment")
     public ResponseEntity<AppointmentResource> createAppointment(@RequestBody CreateAppointmentResource resource) {
         return new ResponseEntity<>(mapper.toResource(appointmentService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }

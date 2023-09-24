@@ -29,7 +29,7 @@ public class TheraphyResource {
 
     private String appointmentGap;
 
-    private Date startAt;
+    private String startAt;
 
-    private Date finishAt;
+    private String finishAt;
 }
