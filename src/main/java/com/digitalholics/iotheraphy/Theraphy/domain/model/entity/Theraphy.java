@@ -58,4 +58,11 @@ public class Theraphy {
             fetch = FetchType.EAGER, mappedBy = "theraphy")
     private Set<Appointment> appointments = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, mappedBy = "theraphy")
+    private Set<Treatment> treatments = new HashSet<>();
+
+
+
+
 }
