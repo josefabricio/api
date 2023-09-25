@@ -46,7 +46,5 @@ public class CreateTheraphyResource {
     @Column(name = "finish_at")
     private String finishAt;
 
-
-    private PatientResource patient;
-    private PhysiotherapistResource physiotherapist;
+    private Integer patientId;
 }

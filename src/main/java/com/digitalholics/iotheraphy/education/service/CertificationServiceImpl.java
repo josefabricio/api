@@ -13,6 +13,8 @@ import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -70,9 +72,11 @@ public class CertificationServiceImpl implements CertificationService {
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        Optional<Physiotheraphist> physiotherapistOptional = physiotherapistRepository.findById(certificationResource.getPhysiotherapistId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
 
-        Physiotheraphist physiotheraphist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Physiotherapist not found with ID: " + certificationResource.getPhysiotherapistId()));
+        Optional<Physiotheraphist> physiotheraphistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotheraphistByUserUsername(username));
+        Physiotheraphist physiotheraphist = physiotheraphistOptional.orElseThrow(()->new NotFoundException("This physiotherapist not found with ID: "+ username));
 
         Certification certification = new Certification();
         certification.setPhysiotheraphist(physiotheraphist);

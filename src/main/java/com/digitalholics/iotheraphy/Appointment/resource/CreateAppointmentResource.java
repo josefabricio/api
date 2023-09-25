@@ -30,8 +30,6 @@ public class CreateAppointmentResource {
 
     private String place;
 
-    private TheraphyResource theraphy;
-
-
+    private Integer theraphyId;
 
 }

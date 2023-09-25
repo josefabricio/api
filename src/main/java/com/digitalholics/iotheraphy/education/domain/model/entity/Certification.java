@@ -16,7 +16,7 @@ import lombok.*;
 public class Certification {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
