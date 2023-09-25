@@ -21,7 +21,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     String firstname;

@@ -2,6 +2,7 @@ package com.digitalholics.iotheraphy.Theraphy.service;
 
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.Shared.Exception.UnauthorizedException;
 import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
 import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Treatment;
 import com.digitalholics.iotheraphy.Theraphy.domain.persistence.TheraphyRepository;
@@ -13,6 +14,8 @@ import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -71,26 +74,28 @@ public class TreatmentServiceImpl implements TreatmentService {
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
-//        TreatmentResource
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
         Optional<Theraphy> theraphyOptional = theraphyRepository.findById(treatmentResource.getTheraphyId());
 
         Theraphy theraphy = theraphyOptional.orElseThrow(() -> new NotFoundException("Theraphy not found with ID: " + treatmentResource.getTheraphyId()));
 
-
-        //Optional<Therapist> therapistOptional = therapistRepository.findById(checkRequestResource.getTherapistId());
-        //Therapist therapist = therapistOptional.orElseThrow(() -> new NotFoundException("Therapist not found with ID: " + checkRequestResource.getTherapistId()));
-
         Treatment treatment = new Treatment();
-        treatment.setTheraphy(theraphy);
-        treatment.setDay(treatmentResource.getDay());
-        treatment.setDescription(treatmentResource.getDescription());
-        treatment.setTitle(treatmentResource.getTitle());
-        treatment.setDuration(treatmentResource.getDuration());
-        treatment.setViewed(treatmentResource.getViewed());
-        treatment.setVideoUrl(treatmentResource.getVideoUrl());
 
-
-        return treatmentRepository.save(treatment);
+        if (theraphy.getPhysiotheraphistId().getUser().getUsername().equals(username)){
+            treatment.setTheraphy(theraphy);
+            treatment.setDay(treatmentResource.getDay());
+            treatment.setDescription(treatmentResource.getDescription());
+            treatment.setTitle(treatmentResource.getTitle());
+            treatment.setDuration(treatmentResource.getDuration());
+            treatment.setViewed(treatmentResource.getViewed());
+            treatment.setVideoUrl(treatmentResource.getVideoUrl());
+            return treatmentRepository.save(treatment);
+        }else {
+            throw new UnauthorizedException("You do not have permission to create an treatment for this therapy.");
+        }
 
     }
 
