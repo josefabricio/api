@@ -1,6 +1,8 @@
 package com.digitalholics.iotheraphy.Theraphy.domain.service;
 
 import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
+import com.digitalholics.iotheraphy.Theraphy.resource.CreateTheraphyResource;
+import com.digitalholics.iotheraphy.Theraphy.resource.TheraphyResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,7 @@ public interface TheraphyService {
 
     Theraphy getById(Integer theraphyId);
 
-    Theraphy create(Theraphy theraphy);
+    Theraphy create(CreateTheraphyResource theraphy);
 
     Theraphy update(Integer theraphyId, Theraphy request);
 

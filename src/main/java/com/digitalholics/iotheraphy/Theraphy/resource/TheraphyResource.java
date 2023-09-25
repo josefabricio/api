@@ -1,5 +1,7 @@
 package com.digitalholics.iotheraphy.Theraphy.resource;
 
+import com.digitalholics.iotheraphy.Profile.resource.PatientResource;
+import com.digitalholics.iotheraphy.Profile.resource.PhysiotherapistResource;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,4 +34,7 @@ public class TheraphyResource {
     private String startAt;
 
     private String finishAt;
+
+    private PatientResource patient;
+    private PhysiotherapistResource physiotherapist;
 }

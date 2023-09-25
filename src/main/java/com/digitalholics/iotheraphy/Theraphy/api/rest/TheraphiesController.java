@@ -39,7 +39,7 @@ public class TheraphiesController {
 
     @PostMapping("create-theraphy")
     public ResponseEntity<TheraphyResource> createTheraphy(@RequestBody CreateTheraphyResource resource) {
-        return new ResponseEntity<>(mapper.toResource(theraphyService.create(mapper.toModel(resource))), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toResource(theraphyService.create((resource))), HttpStatus.CREATED);
     }
 
     @PutMapping("{theraphyId}")
