@@ -1,6 +1,7 @@
 package com.digitalholics.iotheraphy.Appointment.domain.service;
 
 import com.digitalholics.iotheraphy.Appointment.domain.model.entity.Appointment;
+import com.digitalholics.iotheraphy.Appointment.resource.CreateAppointmentResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public interface AppointmentService {
 
     Appointment getAppointmentByTheraphyId(Integer theraphyId);
 
-    Appointment create(Appointment appointment);
+    Appointment create(CreateAppointmentResource appointment);
 
     Appointment update(Integer appointmentId, Appointment request);
 

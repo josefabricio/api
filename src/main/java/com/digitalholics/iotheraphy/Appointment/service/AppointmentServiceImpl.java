@@ -3,16 +3,24 @@ package com.digitalholics.iotheraphy.Appointment.service;
 import com.digitalholics.iotheraphy.Appointment.domain.model.entity.Appointment;
 import com.digitalholics.iotheraphy.Appointment.domain.persistence.AppointmentRepository;
 import com.digitalholics.iotheraphy.Appointment.domain.service.AppointmentService;
+import com.digitalholics.iotheraphy.Appointment.resource.CreateAppointmentResource;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.Shared.Exception.UnauthorizedException;
+import com.digitalholics.iotheraphy.Theraphy.domain.model.entity.Theraphy;
+import com.digitalholics.iotheraphy.Theraphy.domain.persistence.TheraphyRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,11 +29,13 @@ public class AppointmentServiceImpl implements AppointmentService {
     private static final String ENTITY = "Appointment";
 
     private final AppointmentRepository appointmentRepository;
+    private final TheraphyRepository theraphyRepository;
 
     private final Validator validator;
 
-    public AppointmentServiceImpl(AppointmentRepository appointmenRepository, Validator validator) {
+    public AppointmentServiceImpl(AppointmentRepository appointmenRepository, TheraphyRepository theraphyRepository, Validator validator) {
         this.appointmentRepository = appointmenRepository;
+        this.theraphyRepository = theraphyRepository;
         this.validator = validator;
     }
 
@@ -50,19 +60,38 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment create(Appointment appointment) {
-        Set<ConstraintViolation<Appointment>> violations = validator.validate(appointment);
+    public Appointment create(CreateAppointmentResource appointmentResource) {
+        Set<ConstraintViolation<CreateAppointmentResource>> violations = validator.validate(appointmentResource);
 
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        Appointment appointmentWithTopic = appointmentRepository.findByTopic(appointment.getTopic());
+        Appointment appointmentWithTopic = appointmentRepository.findByTopic(appointmentResource.getTopic());
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
 
         if(appointmentWithTopic != null)
             throw new ResourceValidationException(ENTITY,
                     "A Appointment with the same topic already exists.");
 
-        return appointmentRepository.save(appointment) ;
+        Optional<Theraphy> theraphyOptional = theraphyRepository.findById(appointmentResource.getTheraphyId());
+
+        Theraphy theraphy = theraphyOptional.orElseThrow(()-> new NotFoundException("This theraphy not foud with ID: "+ appointmentResource.getTheraphyId()));
+        Appointment appointment = new Appointment();
+
+        if (theraphy.getPatientId().getUser().getUsername().equals(username) || theraphy.getPhysiotheraphistId().getUser().getUsername().equals(username)){
+            appointment.setDone(appointmentResource.getDone());
+            appointment.setTopic(appointmentResource.getTopic());
+            appointment.setDiagnosis(appointmentResource.getDiagnosis());
+            appointment.setDate(appointmentResource.getDate());
+            appointment.setHour(appointmentResource.getHour());
+            appointment.setPlace(appointmentResource.getPlace());
+            appointment.setTheraphy(theraphy);
+            return appointmentRepository.save(appointment);
+        }else {
+            throw new UnauthorizedException("You do not have permission to create an appointment for this therapy.");
+        }
     }
 
     @Override
