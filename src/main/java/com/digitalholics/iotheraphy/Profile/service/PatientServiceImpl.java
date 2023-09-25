@@ -86,7 +86,7 @@ public class PatientServiceImpl implements PatientService {
 
         if(patientWithDni != null)
             throw new ResourceValidationException(ENTITY,
-                    "A patient with the same first name already exists.");
+                    "A patient with the same Dni first name already exists.");
 
         return patientRepository.save(patient);
 

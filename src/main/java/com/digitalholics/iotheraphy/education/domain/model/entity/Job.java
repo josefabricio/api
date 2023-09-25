@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.education.domain.model.entity;
 
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -12,11 +13,11 @@ import lombok.*;
 @Table(name = "jobs")
 public class Job {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "physiotherapist_id")
-    private Integer physiotherapistId;
+    @ManyToOne
+    private Physiotheraphist physiotherapist;
 
     @Size(max = 50)
     private String position;

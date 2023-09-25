@@ -1,5 +1,7 @@
 package com.digitalholics.iotheraphy.education.service;
 
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
+import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
 import com.digitalholics.iotheraphy.education.domain.model.entity.Job;
@@ -10,9 +12,13 @@ import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -20,11 +26,13 @@ public class JobServiceImpl implements JobService {
     private static final String ENTITY = "Job";
 
     private final JobRepository jobRepository;
+    private final PhysiotherapistRepository physiotherapistRepository;
 
     private final Validator validator;
 
-    public JobServiceImpl(JobRepository jobRepository, Validator validator) {
+    public JobServiceImpl(JobRepository jobRepository, PhysiotherapistRepository physiotherapistRepository, Validator validator) {
         this.jobRepository = jobRepository;
+        this.physiotherapistRepository = physiotherapistRepository;
         this.validator = validator;
     }
 
@@ -50,6 +58,14 @@ public class JobServiceImpl implements JobService {
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Optional<Physiotheraphist> physiotheraphistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotheraphistByUserUsername(username));
+        Physiotheraphist physiotheraphist = physiotheraphistOptional.orElseThrow(()->new NotFoundException("This physiotherapist not found with ID: "+ username));
+
+        job.setPhysiotherapist(physiotheraphist);
 
         return jobRepository.save(job);
     }

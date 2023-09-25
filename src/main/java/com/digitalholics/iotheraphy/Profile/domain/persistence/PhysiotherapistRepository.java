@@ -11,11 +11,10 @@ import java.util.Optional;
 @Repository
 public interface PhysiotherapistRepository extends JpaRepository<Physiotheraphist,Integer> {
 
-    @Query("""
-        select t.id, t.age, t.appointmentQuantity, t.birthdayDate, t.photoUrl, t.user.id from Patient t inner join User u on t.user.id = u.id
-                                                                 where t.user.firstname = :firstname
-    """)
-    Physiotheraphist findByFirstName(String firstname);
+
+    Physiotheraphist findPhysiotheraphistByDni(String dni);
+
+    Physiotheraphist findPhysiotheraphistByUserUsername(String username);
 
     Optional<Physiotheraphist> findByUserId(Integer userId);
 

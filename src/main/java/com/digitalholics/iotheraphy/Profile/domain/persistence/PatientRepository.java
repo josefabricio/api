@@ -17,6 +17,7 @@ public interface PatientRepository extends JpaRepository<Patient,Integer> {
     """)
     Patient findByFirstName(String firstname);
 
+    Patient findPatientsByUserUsername(String username);
     Patient findPatientByDni(String dni);
 
     Optional<Patient> findByUserId(Integer userId);
