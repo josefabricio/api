@@ -14,7 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/v1/", produces = "application/json")
+@RequestMapping(value = "/api/v1/patients", produces = "application/json")
 @Tag(name = "Patients", description = "Create, read, update and delete patients")
 public class PatientsController {
     private final PatientService patientService;
@@ -26,19 +26,19 @@ public class PatientsController {
         this.mapper = mapper;
     }
 
-    @GetMapping("allPatients")
+    @GetMapping
     public Page<PatientResource> getAllPatients(Pageable pageable) {
         return mapper.modelListPage(patientService.getAll(), pageable);
     }
 
-    @GetMapping("patientById/{patientId}")
+    @GetMapping("{patientId}")
     public PatientResource getPatientById(@PathVariable Integer patientId) {
         return mapper.toResource(patientService.getById(patientId));
     }
 
-    @GetMapping("patientByUserId/userId={value}")
-    public PatientResource getPatientByUserId(@PathVariable Integer value) {
-        return mapper.toResource(patientService.getByUserId(value));
+    @GetMapping("byUserId/{userId}")
+    public PatientResource getPatientByUserId(@PathVariable Integer userId) {
+        return mapper.toResource(patientService.getByUserId(userId));
     }
 
     @PostMapping("registration-patient")
@@ -46,13 +46,13 @@ public class PatientsController {
         return new ResponseEntity<>(mapper.toResource(patientService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
-    @PutMapping("updatePatientById{patientId}")
+    @PutMapping("{patientId}")
     public PatientResource updatePatient(@PathVariable Integer patientId,
                                          @RequestBody UpdatePatientResource resource) {
         return mapper.toResource(patientService.update(patientId, mapper.toModel(resource)));
     }
 
-    @DeleteMapping("deletePatientById/{patientId}")
+    @DeleteMapping("{patientId}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer patientId) {
         return patientService.delete(patientId);
     }

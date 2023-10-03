@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.service;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Profile.domain.service.PhysiotherapistService;
 import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
@@ -38,28 +38,28 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
     }
 
     @Override
-    public List<Physiotheraphist> getAll() {
+    public List<Physiotherapist> getAll() {
         return physiotherapistRepository.findAll();
     }
 
     @Override
-    public Page<Physiotheraphist> getAll(Pageable pageable) {
+    public Page<Physiotherapist> getAll(Pageable pageable) {
         return physiotherapistRepository.findAll(pageable);
     }
 
     @Override
-    public Physiotheraphist getById(Integer patientId) {
+    public Physiotherapist getById(Integer patientId) {
         return physiotherapistRepository.findById(patientId)
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY, patientId));    }
 
     @Override
-    public Physiotheraphist getByUserId(Integer userId) {
+    public Physiotherapist getByUserId(Integer userId) {
         return physiotherapistRepository.findByUserId(userId)
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY, userId));    }
 
     @Override
-    public Physiotheraphist create(Physiotheraphist physiotheraphist) {
-        Set<ConstraintViolation<Physiotheraphist>> violations = validator.validate(physiotheraphist);
+    public Physiotherapist create(Physiotherapist physiotherapist) {
+        Set<ConstraintViolation<Physiotherapist>> violations = validator.validate(physiotherapist);
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
@@ -71,26 +71,26 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
         User user = userOptional.orElseThrow(() -> new NotFoundException("User not found for username: " + username));
 
-        physiotheraphist.setUser(user);
+        physiotherapist.setUser(user);
 
-        Physiotheraphist physiotheraphistWithDni = physiotherapistRepository.findPhysiotheraphistByDni(physiotheraphist.getDni());
+        Physiotherapist physiotherapistWithDni = physiotherapistRepository.findPhysiotherapistByDni(physiotherapist.getDni());
 
-        if(physiotheraphistWithDni != null)
+        if(physiotherapistWithDni != null)
             throw new ResourceValidationException(ENTITY,
-                    "A physiotheraphist with the same Dni first name already exists.");
+                    "A physiotherapist with the same Dni first name already exists.");
 
-        return physiotherapistRepository.save(physiotheraphist);    }
+        return physiotherapistRepository.save(physiotherapist);    }
 
     @Override
-    public Physiotheraphist update(Integer patientId, Physiotheraphist request) {
-        Set<ConstraintViolation<Physiotheraphist>> violations = validator.validate(request);
+    public Physiotherapist update(Integer patientId, Physiotherapist request) {
+        Set<ConstraintViolation<Physiotherapist>> violations = validator.validate(request);
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        return physiotherapistRepository.findById(patientId).map( physiotheraphist ->
+        return physiotherapistRepository.findById(patientId).map( physiotherapist ->
                         physiotherapistRepository.save(
-                                physiotheraphist.withAge(request.getAge()).
+                                physiotherapist.withAge(request.getAge()).
                                         withPhotoUrl(request.getPhotoUrl()).
                                         withBirthdayDate(request.getBirthdayDate()).
                                         withSpecialization(request.getSpecialization()).
@@ -106,8 +106,8 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
     @Override
     public ResponseEntity<?> delete(Integer patientId) {
-        return physiotherapistRepository.findById(patientId).map(physiotheraphist -> {
-            physiotherapistRepository.delete(physiotheraphist);
+        return physiotherapistRepository.findById(patientId).map(physiotherapist -> {
+            physiotherapistRepository.delete(physiotherapist);
             return ResponseEntity.ok().build();
         }).orElseThrow(()-> new ResourceNotFoundException(ENTITY,patientId));    }
 }

@@ -12,9 +12,9 @@ public class CreatePatientResource {
 
     private Integer id;
     private String dni;
-    private Number age;
+    private Integer age;
     private String photoUrl;
     private String birthdayDate;
-    private Number appointmentQuantity;
+    private Integer appointmentQuantity;
     private String location;
 }
