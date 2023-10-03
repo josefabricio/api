@@ -3,7 +3,9 @@ package com.digitalholics.iotheraphy.HealthRecordAndExpertise.api.rest;
 
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.JobService;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.mapping.JobMapper;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.*;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.CreateJobResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.JobResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.UpdateJobResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

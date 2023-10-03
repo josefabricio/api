@@ -2,9 +2,9 @@ package com.digitalholics.iotheraphy.HealthRecordAndExpertise.mapping;
 
 import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Certification;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CertificationResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CreateCertificationResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.UpdateCertificationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.CertificationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.CreateCertificationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.UpdateCertificationResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

@@ -1,4 +1,4 @@
-package com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource;
+package com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification;
 
 import com.digitalholics.iotheraphy.Profile.resource.PhysiotherapistResource;
 import lombok.*;

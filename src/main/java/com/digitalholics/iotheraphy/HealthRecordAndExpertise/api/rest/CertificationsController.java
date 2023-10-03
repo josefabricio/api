@@ -2,9 +2,9 @@ package com.digitalholics.iotheraphy.HealthRecordAndExpertise.api.rest;
 
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.CertificationService;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.mapping.CertificationMapper;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CertificationResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CreateCertificationResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.UpdateCertificationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.CertificationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.CreateCertificationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.UpdateCertificationResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

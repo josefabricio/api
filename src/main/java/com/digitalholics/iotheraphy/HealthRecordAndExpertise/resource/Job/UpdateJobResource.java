@@ -1,4 +1,4 @@
-package com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource;
+package com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job;
 
 import lombok.Getter;
 import lombok.Setter;
