@@ -5,6 +5,8 @@ import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.HashSet;
@@ -25,8 +27,10 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(min = 8, max = 8)
     private String dni;
 
+    @Min(18)
     private Integer age;
 
     @Column(name = "photo_url")
@@ -36,6 +40,7 @@ public class Patient {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private String birthdayDate;
 
+    @Min(0)
     private Integer appointmentQuantity;
 
     private String location;
@@ -44,10 +49,5 @@ public class Patient {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
-
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "patientId")
-    private Set<Therapy> therapies = new HashSet<>();
 
 }

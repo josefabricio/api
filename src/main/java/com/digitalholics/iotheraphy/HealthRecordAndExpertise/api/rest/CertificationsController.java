@@ -46,10 +46,11 @@ public class CertificationsController {
         return new ResponseEntity<>(mapper.toResource(certificationService.create(resource)), HttpStatus.CREATED);
     }
 
-    @PutMapping("{certificationId}")
-    public CertificationResource updateCertification(@PathVariable Integer certificationId,
-                                                     @RequestBody UpdateCertificationResource resource) {
-        return mapper.toResource(certificationService.update(certificationId, mapper.toModel(resource)));
+    @PatchMapping("{certificationId}")
+    public ResponseEntity<CertificationResource> patchCertification(@PathVariable Integer certificationId,
+                                                                    @RequestBody UpdateCertificationResource request) {
+
+        return new ResponseEntity<>(mapper.toResource(certificationService.update(certificationId,request)), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{certificationId}")

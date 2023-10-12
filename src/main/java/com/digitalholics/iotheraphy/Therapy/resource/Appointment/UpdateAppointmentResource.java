@@ -16,9 +16,6 @@ import java.util.Date;
 public class UpdateAppointmentResource {
 
 
-    private Integer id;
-
-
     private Boolean done;
 
     private String topic;

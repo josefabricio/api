@@ -63,4 +63,12 @@ public class ConsultationsController {
     public ResponseEntity<?> deleteConsultation(@PathVariable Integer consultationId) {
         return consultationService.delete(consultationId);
     }
+
+    @PatchMapping("updateDiagnosis/{consultationId}")
+    public ResponseEntity<ConsultationResource> updateConsultationDiagnosis(
+            @PathVariable Integer consultationId,
+            @RequestBody String diagnosis) {
+
+        return new  ResponseEntity<>(mapper.toResource(consultationService.updateDiagnosis(consultationId,diagnosis)), HttpStatus.CREATED);
+    }
 }

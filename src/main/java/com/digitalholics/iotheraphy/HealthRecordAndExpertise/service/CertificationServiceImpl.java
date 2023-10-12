@@ -1,5 +1,7 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.service;
 
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Job;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.UpdateCertificationResource;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
@@ -88,19 +90,20 @@ public class CertificationServiceImpl implements CertificationService {
     }
 
     @Override
-    public Certification update(Integer certificationId, Certification request) {
-        Set<ConstraintViolation<Certification>> violations = validator.validate(request);
+    public Certification update(Integer certificationId, UpdateCertificationResource request) {
+        Certification certification = getById(certificationId);
 
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
+        if (request.getTitle() != null) {
+            certification.setTitle(request.getTitle());
+        }
+        if (request.getSchool() != null) {
+            certification.setSchool(request.getSchool());
+        }
+        if (request.getYear() != null) {
+            certification.setYear(request.getYear());
+        }
 
-        return certificationRepository.findById(certificationId).map(certification ->
-                        certificationRepository.save(
-                                certification.withTitle(request.getTitle()).
-                                        withSchool(request.getSchool()).
-                                        withYear(request.getYear())
-                                        ))
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY,certificationId));
+        return certificationRepository.save(certification);
     }
 
     @Override

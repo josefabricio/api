@@ -15,10 +15,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     Appointment findAppointmentByTherapyId(Integer therapyId);
 
     //@Query("select * from Appointment a inner join Theraphy b  on  a.theraphy.id = b.id where b.patientId = :patientId");
-    @Query("select a from Appointment  a where a.therapy.patientId.id = :patientId")
+    @Query("select a from Appointment  a where a.therapy.patient.id = :patientId")
     List<Appointment> findAppointmentsByTherapyByPatientId(Integer patientId);
 
-    @Query("select a from Appointment  a where a.therapy.physiotherapistId.id = :physiotherapistId")
+    @Query("select a from Appointment  a where a.therapy.physiotherapist.id = :physiotherapistId")
     List<Appointment> findAppointmentsByTherapyByPhysiotherapistId(Integer physiotherapistId);
 
 }

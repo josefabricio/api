@@ -62,11 +62,11 @@ public class Therapy {
     @ManyToOne
     @JoinColumn(name = "patient_id")
     @JsonIgnore
-    private Patient patientId;
+    private Patient patient;
 
     @ManyToOne
     @JoinColumn(name = "physiotherapist_id")
     @JsonIgnore
-    private Physiotherapist physiotherapistId;
+    private Physiotherapist physiotherapist;
 
 }

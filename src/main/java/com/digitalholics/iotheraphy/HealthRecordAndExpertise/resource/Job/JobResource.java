@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job;
 
+import com.digitalholics.iotheraphy.Profile.resource.PhysiotherapistResource;
 import lombok.*;
 
 @Getter
@@ -9,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class JobResource {
     private Integer id;
-    private Integer physiotherapistId;
+    private PhysiotherapistResource physiotherapist;
     private String position;
     private String Organization;
 }

@@ -1,6 +1,9 @@
 package com.digitalholics.iotheraphy.Profile.domain.service;
 
+import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profile.resource.CreatePatientResource;
+import com.digitalholics.iotheraphy.Profile.resource.UpdatePatientResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +17,8 @@ public interface PatientService {
     Patient getById(Integer patientId);
     Patient getByDni(String dni);
     Patient getByUserId(Integer userId);
-    Patient create(Patient patient);
-    Patient update(Integer patientId, Patient request);
+    Patient create(CreatePatientResource patient);
+    Patient update(Integer patientId, UpdatePatientResource request);
     ResponseEntity<?> delete(Integer patientId);
+
 }

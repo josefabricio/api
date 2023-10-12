@@ -1,6 +1,7 @@
 package com.digitalholics.iotheraphy.Therapy.api.rest;
 
 
+import com.digitalholics.iotheraphy.Consultation.resource.ConsultationResource;
 import com.digitalholics.iotheraphy.Therapy.domain.service.AppointmentService;
 import com.digitalholics.iotheraphy.Therapy.mapping.AppointmentMapper;
 import com.digitalholics.iotheraphy.Therapy.resource.Appointment.AppointmentResource;
@@ -56,15 +57,25 @@ public class AppointmentsController {
         return new ResponseEntity<>(mapper.toResource(appointmentService.create((resource))), HttpStatus.CREATED);
     }
 
-    @PutMapping("{appointmentId}")
-    public AppointmentResource updateAppointment(@PathVariable Integer appointmentId,
-                                                 @RequestBody UpdateAppointmentResource resource) {
-        return mapper.toResource(appointmentService.update(appointmentId, mapper.toModel(resource)));
+    @PatchMapping("{appointmentId}")
+    public ResponseEntity<AppointmentResource> patchAppointment(
+            @PathVariable Integer appointmentId,
+            @RequestBody UpdateAppointmentResource request) {
+
+        return new  ResponseEntity<>(mapper.toResource(appointmentService.update(appointmentId,request)), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{appointmentId}")
     public ResponseEntity<?> deleteAppointment(@PathVariable Integer appointmentId) {
         return appointmentService.delete(appointmentId);
+    }
+
+    @PatchMapping("updateDiagnosis/{appointmentId}")
+    public ResponseEntity<AppointmentResource> updateConsultationDiagnosis(
+            @PathVariable Integer appointmentId,
+            @RequestBody String diagnosis) {
+
+        return new  ResponseEntity<>(mapper.toResource(appointmentService.updateDiagnosis(appointmentId,diagnosis)), HttpStatus.CREATED);
     }
 
 }

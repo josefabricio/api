@@ -1,6 +1,8 @@
 package com.digitalholics.iotheraphy.Profile.domain.service;
 
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
+import com.digitalholics.iotheraphy.Profile.resource.CreatePhysiotherapistResource;
+import com.digitalholics.iotheraphy.Profile.resource.UpdatePhysiotherapistResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,7 @@ public interface PhysiotherapistService {
     Page<Physiotherapist> getAll(Pageable pageable);
     Physiotherapist getById(Integer patientId);
     Physiotherapist getByUserId(Integer userId);
-    Physiotherapist create(Physiotherapist physiotherapist);
-    Physiotherapist update(Integer physiotherapistId, Physiotherapist request);
+    Physiotherapist create(CreatePhysiotherapistResource physiotherapist);
+    Physiotherapist update(Integer physiotherapistId, UpdatePhysiotherapistResource request);
     ResponseEntity<?> delete(Integer physiotherapistId);
 }

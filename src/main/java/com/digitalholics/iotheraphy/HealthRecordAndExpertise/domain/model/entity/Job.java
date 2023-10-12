@@ -1,6 +1,7 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity;
 
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -17,13 +18,15 @@ public class Job {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "physiotherapist_id")
+    @JsonIgnore
     private Physiotherapist physiotherapist;
 
     @Size(max = 50)
     private String position;
 
     @Size(max = 50)
-    private String Organization;
+    private String organization;
 
 }
 

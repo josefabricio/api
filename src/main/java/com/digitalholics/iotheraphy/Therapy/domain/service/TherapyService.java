@@ -2,6 +2,7 @@ package com.digitalholics.iotheraphy.Therapy.domain.service;
 
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapy.resource.Therapy.CreateTherapyResource;
+import com.digitalholics.iotheraphy.Therapy.resource.Therapy.UpdateTherapyResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,7 @@ public interface TherapyService {
     Therapy getById(Integer therapyId);
 
     Therapy create(CreateTherapyResource therapy);
-
-    Therapy update(Integer therapyId, Therapy request);
+    Therapy update(Integer therapyId, UpdateTherapyResource request);
 
     ResponseEntity<?> delete(Integer therapyId);
 

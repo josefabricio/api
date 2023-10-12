@@ -47,10 +47,12 @@ public class TreatmentsController {
         return new ResponseEntity<>(mapper.toResource(treatmentService.create(resource)), HttpStatus.CREATED);
     }
 
-    @PutMapping("{treatmentId}")
-    public TreatmentResource updateTreatment(@PathVariable Integer treatmentId,
-                                           @RequestBody UpdateTreatmentResource resource) {
-        return mapper.toResource(treatmentService.update(treatmentId, mapper.toModel(resource)));
+    @PatchMapping("{treatmentId}")
+    public ResponseEntity<TreatmentResource> patchTreatment(
+            @PathVariable Integer treatmentId,
+            @RequestBody UpdateTreatmentResource request) {
+
+        return new  ResponseEntity<>(mapper.toResource(treatmentService.update(treatmentId,request)), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{treatmentId}")
