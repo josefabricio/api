@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.api.rest;
 
+
 import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
 import com.digitalholics.iotheraphy.Profile.mapping.PatientMapper;
 import com.digitalholics.iotheraphy.Profile.resource.CreatePatientResource;
@@ -10,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -43,13 +43,15 @@ public class PatientsController {
 
     @PostMapping("registration-patient")
     public ResponseEntity<PatientResource> createPatient(@RequestBody CreatePatientResource resource) {
-        return new ResponseEntity<>(mapper.toResource(patientService.create(mapper.toModel(resource))), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toResource(patientService.create(resource)), HttpStatus.CREATED);
     }
 
-    @PutMapping("{patientId}")
-    public PatientResource updatePatient(@PathVariable Integer patientId,
-                                         @RequestBody UpdatePatientResource resource) {
-        return mapper.toResource(patientService.update(patientId, mapper.toModel(resource)));
+    @PatchMapping("{patientId}")
+    public ResponseEntity<PatientResource> patchPatient(
+            @PathVariable Integer patientId,
+            @RequestBody UpdatePatientResource request) {
+
+        return new  ResponseEntity<>(mapper.toResource(patientService.update(patientId,request)), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{patientId}")

@@ -6,6 +6,8 @@ import com.digitalholics.iotheraphy.Consultation.domain.persistence.Consultation
 import com.digitalholics.iotheraphy.Consultation.domain.service.ConsultationService;
 import com.digitalholics.iotheraphy.Consultation.resource.CreateConsultationResource;
 import com.digitalholics.iotheraphy.Consultation.resource.UpdateConsultationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Diagnosis;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.DiagnosisRepository;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
@@ -22,6 +24,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -34,12 +37,14 @@ public class ConsultationServiceImpl implements ConsultationService {
     private final ConsultationRepository consultationRepository;
     private final PhysiotherapistRepository physiotherapistRepository;
     private final PatientRepository patientRepository;
+    private final DiagnosisRepository diagnosisRepository;
     private final Validator validator;
 
-    public ConsultationServiceImpl(ConsultationRepository consultationRepository, PhysiotherapistRepository physiotherapistRepository, PatientRepository patientRepository, Validator validator) {
+    public ConsultationServiceImpl(ConsultationRepository consultationRepository, PhysiotherapistRepository physiotherapistRepository, PatientRepository patientRepository, DiagnosisRepository diagnosisRepository, Validator validator) {
         this.consultationRepository = consultationRepository;
         this.physiotherapistRepository = physiotherapistRepository;
         this.patientRepository = patientRepository;
+        this.diagnosisRepository = diagnosisRepository;
         this.validator = validator;
     }
 
@@ -113,6 +118,26 @@ public class ConsultationServiceImpl implements ConsultationService {
         consultation.setHour(consultationResource.getHour());
         consultation.setPlace(consultationResource.getPlace());
 
+        Integer consultationsQuantityPhysiotherapist = physiotherapist.getConsultationQuantity();
+        physiotherapist.setConsultationQuantity(consultationsQuantityPhysiotherapist+1);
+        physiotherapistRepository.save(physiotherapist);
+
+        Integer consultationsQuantityPatient = patient.getAppointmentQuantity();
+        patient.setAppointmentQuantity(consultationsQuantityPatient+1);
+        patientRepository.save(patient);
+
+        List<Consultation> consultations = consultationRepository.findByPhysiotherapistId(physiotherapist.getId());
+
+        for (Consultation existingConsultation : consultations) {
+            if (existingConsultation.getPatient().getId().equals(patient.getId())) {
+
+                return consultationRepository.save(consultation);
+            }
+        }
+
+        Integer patientQuantity = physiotherapist.getPatientQuantity();
+        physiotherapist.setPatientQuantity(patientQuantity+1);
+        physiotherapistRepository.save(physiotherapist);
 
         return consultationRepository.save(consultation);
     }
@@ -150,5 +175,27 @@ public class ConsultationServiceImpl implements ConsultationService {
             consultationRepository.delete(consultation);
             return ResponseEntity.ok().build();
         }).orElseThrow(()-> new ResourceNotFoundException(ENTITY,consultationId));
+    }
+
+    @Override
+    public Consultation updateDiagnosis(Integer consultationId, String diagnosis) {
+        Consultation consultation = getById(consultationId);
+
+        if (diagnosis != null) {
+            consultation.setDiagnosis(diagnosis);
+        }
+        if (!consultation.getDone()) {
+            consultation.setDone(true);
+        }
+
+        Diagnosis diagnosisResource = new Diagnosis();
+        diagnosisResource.setDiagnosis(diagnosis);
+        diagnosisResource.setPatient(consultation.getPatient());
+        diagnosisResource.setPhysiotherapist(consultation.getPhysiotherapist());
+        diagnosisResource.setDate(String.valueOf(LocalDate.now()));
+
+        diagnosisRepository.save(diagnosisResource);
+
+        return consultationRepository.save(consultation);
     }
 }

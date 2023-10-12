@@ -30,7 +30,6 @@ public class Appointment {
     private String topic;
 
     @NotNull
-    @NotBlank
     private String diagnosis;
 
     @NotNull

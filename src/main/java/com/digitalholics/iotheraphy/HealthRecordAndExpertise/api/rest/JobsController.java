@@ -36,15 +36,20 @@ public class JobsController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<JobResource> createJob(@RequestBody CreateJobResource resource) {
-        return new ResponseEntity<>(mapper.toResource(jobService.create(mapper.toModel(resource))), HttpStatus.CREATED);
+    @GetMapping("byPhysiotherapistId/{physiotherapistId}")
+    public Page<JobResource> getJobsByPhysiotherapistId(@PathVariable Integer physiotherapistId, Pageable pageable) {
+        return mapper.modelListPage(jobService.getByPhysiotherapistId(physiotherapistId), pageable);
     }
 
-    @PutMapping("{jobId}")
-    public JobResource updateJob(@PathVariable Integer jobId,
-                                                     @RequestBody UpdateJobResource resource) {
-        return mapper.toResource(jobService.update(jobId, mapper.toModel(resource)));
+    @PostMapping
+    public ResponseEntity<JobResource> createJob(@RequestBody CreateJobResource resource) {
+        return new ResponseEntity<>(mapper.toResource(jobService.create(resource)), HttpStatus.CREATED);
+    }
+
+    @PatchMapping("{jobId}")
+    public ResponseEntity<JobResource> patchJob(@PathVariable Integer jobId,
+                                                          @RequestBody UpdateJobResource request) {
+        return new ResponseEntity<>(mapper.toResource(jobService.update(jobId,request)), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{jobId}")

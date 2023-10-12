@@ -1,5 +1,9 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.service;
 
+import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Certification;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CreateJobResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.UpdateJobResource;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
@@ -53,8 +57,18 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Job create(Job job) {
-        Set<ConstraintViolation<Job>> violations = validator.validate(job);
+    public List<Job> getByPhysiotherapistId(Integer physiotherapistId) {
+        List<Job> jobs = jobRepository.findByPhysiotherapistId(physiotherapistId);
+
+        if(jobs.isEmpty())
+            throw new ResourceValidationException(ENTITY,
+                    "Not found Jobs for this physiotherapist");
+
+        return jobs;
+    }
+    @Override
+    public Job create(CreateJobResource jobResource) {
+        Set<ConstraintViolation<CreateJobResource>> violations = validator.validate(jobResource);
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
@@ -62,27 +76,30 @@ public class JobServiceImpl implements JobService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-        Optional<Physiotherapist> physiotheraphistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotherapistByUserUsername(username));
-        Physiotherapist physiotherapist = physiotheraphistOptional.orElseThrow(()->new NotFoundException("This physiotherapist not found with ID: "+ username));
+        Optional<Physiotherapist> physiotherapistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotherapistByUserUsername(username));
+        Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(()->new NotFoundException("This physiotherapist not found with ID: "+ username));
 
+        Job job= new Job();
         job.setPhysiotherapist(physiotherapist);
+        job.setPosition(jobResource.getPosition());
+        job.setOrganization(jobResource.getOrganization());
 
         return jobRepository.save(job);
     }
 
     @Override
-    public Job update(Integer jobId, Job request) {
-        Set<ConstraintViolation<Job>> violations = validator.validate(request);
+    public Job update(Integer jobId, UpdateJobResource request) {
+        Job job = getById(jobId);
 
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
+        if (request.getPosition() != null) {
+            job.setPosition(request.getPosition());
+        }
+        if (request.getOrganization() != null) {
+            job.setOrganization(request.getOrganization());
+        }
 
-        return jobRepository.findById(jobId).map( certification ->
-                        jobRepository.save(
-                                certification.withPosition(request.getPosition()).
-                                        withOrganization(request.getOrganization())
-                                        ))
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY,jobId));
+
+        return jobRepository.save(job);
     }
 
     @Override

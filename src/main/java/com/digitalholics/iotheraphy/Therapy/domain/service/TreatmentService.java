@@ -2,6 +2,7 @@ package com.digitalholics.iotheraphy.Therapy.domain.service;
 
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Treatment;
 import com.digitalholics.iotheraphy.Therapy.resource.Treatment.CreateTreatmentResource;
+import com.digitalholics.iotheraphy.Therapy.resource.Treatment.UpdateTreatmentResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public interface TreatmentService {
 
     List<Treatment> getTreatmentByTherapyId(Integer therapyId);
 
-    Treatment update(Integer treatmentId, Treatment request);
+    Treatment update(Integer treatmentId, UpdateTreatmentResource request);
 
     ResponseEntity<?> delete(Integer treatmentId);
 

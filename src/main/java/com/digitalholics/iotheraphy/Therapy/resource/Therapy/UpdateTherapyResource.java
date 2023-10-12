@@ -12,28 +12,12 @@ import lombok.Setter;
 @Setter
 public class UpdateTherapyResource {
 
-    private Integer id;
 
-
-    @NotNull
-    @NotBlank
-    @Column(name = "therapy_name")
-    @Size(max = 300)
     private String therapyName;
 
-    @NotNull
-    @NotBlank
-    @Column(name = "appointment_quantity")
-    @Size(max = 300)
     private String appointmentQuantity;
 
-    @NotNull
-    @NotBlank
-    @Column(name = "start_at")
     private String startAt;
 
-    @NotNull
-    @NotBlank
-    @Column(name = "finish_at")
     private String finishAt;
 }

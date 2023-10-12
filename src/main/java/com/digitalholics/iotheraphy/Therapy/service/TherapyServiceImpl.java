@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.Therapy.service;
 
+import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
@@ -10,6 +11,7 @@ import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapy.domain.persistence.TherapyRepository;
 import com.digitalholics.iotheraphy.Therapy.domain.service.TherapyService;
 import com.digitalholics.iotheraphy.Therapy.resource.Therapy.CreateTherapyResource;
+import com.digitalholics.iotheraphy.Therapy.resource.Therapy.UpdateTherapyResource;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
@@ -84,28 +86,32 @@ public class TherapyServiceImpl implements TherapyService {
         therapy.setAppointmentQuantity(therapyResource.getAppointmentQuantity());
         therapy.setStartAt(therapyResource.getStartAt());
         therapy.setFinishAt(therapyResource.getFinishAt());
-        therapy.setPatientId(patient);
-        therapy.setPhysiotherapistId(physiotherapist);
+        therapy.setPatient(patient);
+        therapy.setPhysiotherapist(physiotherapist);
+
 
        return therapyRepository.save(therapy);
     }
 
     @Override
-    public Therapy update(Integer therapyId, Therapy request) {
-        Set<ConstraintViolation<Therapy>> violations = validator.validate(request);
+    public Therapy update(Integer therapyId, UpdateTherapyResource request) {
+        Therapy therapy = getById(therapyId);
 
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
+        if (request.getTherapyName() != null) {
+            therapy.setTherapyName(request.getTherapyName());
+        }
+        if (request.getAppointmentQuantity() != null) {
+            therapy.setAppointmentQuantity(request.getAppointmentQuantity());
+        }
+        if (request.getStartAt() != null) {
+            therapy.setStartAt(request.getStartAt());
+        }
+        if (request.getFinishAt() != null) {
+            therapy.setFinishAt(request.getFinishAt());
+        }
 
-        return therapyRepository.findById(therapyId).map(therapy ->
-                therapyRepository.save(
-                        therapy.withTherapyName(request.getTherapyName())
-                                .withStartAt(request.getStartAt())
-                                .withFinishAt(request.getFinishAt())
-                                .withAppointmentQuantity(request.getAppointmentQuantity())
-                )).orElseThrow(()-> new ResourceNotFoundException(ENTITY, therapyId));
 
-
+        return therapyRepository.save(therapy);
     }
 
     @Override

@@ -20,4 +20,7 @@ public interface ConsultationService {
     Consultation create(CreateConsultationResource consultation);
     Consultation update(Integer consultationId, UpdateConsultationResource request);
     ResponseEntity<?> delete(Integer ConsultationId);
+
+    Consultation updateDiagnosis(Integer consultationId, String diagnosis);
+
 }

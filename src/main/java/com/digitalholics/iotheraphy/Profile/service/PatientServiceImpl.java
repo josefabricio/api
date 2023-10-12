@@ -1,8 +1,11 @@
 package com.digitalholics.iotheraphy.Profile.service;
 
+import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
+import com.digitalholics.iotheraphy.Profile.resource.CreatePatientResource;
+import com.digitalholics.iotheraphy.Profile.resource.UpdatePatientResource;
 import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import com.digitalholics.iotheraphy.Security.Domain.Persistence.UserRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
@@ -67,8 +70,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient create(Patient patient) {
-        Set<ConstraintViolation<Patient>> violations = validator.validate(patient);
+    public Patient create(CreatePatientResource patientResource) {
+        Set<ConstraintViolation<CreatePatientResource>> violations = validator.validate(patientResource);
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
@@ -80,34 +83,51 @@ public class PatientServiceImpl implements PatientService {
 
         User user = userOptional.orElseThrow(() -> new NotFoundException("User not found for username: " + username));
 
-        patient.setUser(user);
 
-        Patient patientWithDni = patientRepository.findPatientByDni(patient.getDni());
+
+        Patient patientWithDni = patientRepository.findPatientByDni(patientResource.getDni());
 
         if(patientWithDni != null)
             throw new ResourceValidationException(ENTITY,
                     "A patient with the same Dni first name already exists.");
+
+        Patient patient = new Patient();
+        patient.setUser(user);
+        patient.setAge(patientResource.getAge());
+        patient.setDni(patientResource.getDni());
+        patient.setLocation(patientResource.getLocation());
+        patient.setBirthdayDate(patientResource.getBirthdayDate());
+        patient.setPhotoUrl(" ");
+        patient.setAppointmentQuantity(0);
 
         return patientRepository.save(patient);
 
     }
 
     @Override
-    public Patient update(Integer patientId, Patient request) {
-        Set<ConstraintViolation<Patient>> violations = validator.validate(request);
+    public Patient update(Integer patientId, UpdatePatientResource request) {
+        Patient patient = getById(patientId);
 
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
+        if (request.getDni() != null) {
+            patient.setDni(request.getDni());
+        }
+        if (request.getAge() != null) {
+            patient.setAge(request.getAge());
+        }
+        if (request.getPhotoUrl() != null) {
+            patient.setPhotoUrl(request.getPhotoUrl());
+        }
+        if (request.getAppointmentQuantity() != null) {
+            patient.setAppointmentQuantity(request.getAppointmentQuantity());
+        }
+        if (request.getLocation() != null) {
+            patient.setLocation(request.getLocation());
+        }
+        if (request.getBirthdayDate() != null) {
+            patient.setBirthdayDate(request.getBirthdayDate());
+        }
 
-        return patientRepository.findById(patientId).map( patient ->
-                        patientRepository.save(
-                                patient.withAge(request.getAge()).
-                                        withPhotoUrl(request.getPhotoUrl()).
-                                        withBirthdayDate(request.getBirthdayDate()).
-                                        withLocation(request.getLocation()).
-                                        withAppointmentQuantity(request.getAppointmentQuantity())
-                                ))
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY,patientId));
+        return patientRepository.save(patient);
     }
 
     @Override

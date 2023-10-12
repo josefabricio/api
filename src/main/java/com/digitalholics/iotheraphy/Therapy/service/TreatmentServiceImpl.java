@@ -3,12 +3,14 @@ package com.digitalholics.iotheraphy.Therapy.service;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
 import com.digitalholics.iotheraphy.Shared.Exception.UnauthorizedException;
+import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Appointment;
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Treatment;
 import com.digitalholics.iotheraphy.Therapy.domain.persistence.TherapyRepository;
 import com.digitalholics.iotheraphy.Therapy.domain.persistence.TreatmentRepository;
 import com.digitalholics.iotheraphy.Therapy.domain.service.TreatmentService;
 import com.digitalholics.iotheraphy.Therapy.resource.Treatment.CreateTreatmentResource;
+import com.digitalholics.iotheraphy.Therapy.resource.Treatment.UpdateTreatmentResource;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
@@ -84,7 +86,7 @@ public class TreatmentServiceImpl implements TreatmentService {
 
         Treatment treatment = new Treatment();
 
-        if (therapy.getPhysiotherapistId().getUser().getUsername().equals(username)){
+        if (therapy.getPhysiotherapist().getUser().getUsername().equals(username)){
             treatment.setTherapy(therapy);
             treatment.setDay(treatmentResource.getDay());
             treatment.setDescription(treatmentResource.getDescription());
@@ -106,22 +108,30 @@ public class TreatmentServiceImpl implements TreatmentService {
     }
 
     @Override
-    public Treatment update(Integer treatmentId, Treatment request) {
-        Set<ConstraintViolation<Treatment>> violations = validator.validate(request);
+    public Treatment update(Integer treatmentId, UpdateTreatmentResource request) {
+        Treatment treatment = getById(treatmentId);
+        if (request.getTitle() != null) {
+            treatment.setTitle(request.getTitle());
+        }
+        if (request.getDescription() != null) {
+            treatment.setDescription(request.getDescription());
+        }
+        if (request.getVideoUrl() != null) {
+            treatment.setVideoUrl(request.getVideoUrl());
+        }
+        if (request.getDuration() != null) {
+            treatment.setDuration(request.getDuration());
+        }
+        if (request.getDay() != null) {
+            treatment.setDay(request.getDay());
+        }
+        if (request.getViewed() != null) {
+            treatment.setViewed(request.getViewed());
+        }
 
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
 
-        return treatmentRepository.findById(treatmentId).map(treatment ->
-                treatmentRepository.save(
-                        treatment.withDescription(request.getDescription())
-                                .withVideoUrl(request.getVideoUrl())
-                                .withDuration(request.getDuration())
-                                .withTitle(request.getTitle())
-                                .withDescription(request.getDescription())
-                                .withDay(request.getDay())
-                                .withViewed(request.getViewed())
-                )).orElseThrow(()-> new ResourceNotFoundException(ENTITY, treatmentId));
+
+        return treatmentRepository.save(treatment);
     }
 
     @Override

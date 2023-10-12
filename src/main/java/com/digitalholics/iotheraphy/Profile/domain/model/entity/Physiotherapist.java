@@ -5,6 +5,8 @@ import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.HashSet;
@@ -22,10 +24,13 @@ public class Physiotherapist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(min = 8, max = 8)
     private String dni;
 
+    @Size(max = 50)
     private String specialization;
 
+    @Min(18)
     private Integer age;
 
     private String location;
@@ -37,6 +42,7 @@ public class Physiotherapist {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private String birthdayDate;
 
+    @Min(0)
     private Double rating;
 
     @Column(name = "consultation_quantity")
@@ -48,6 +54,7 @@ public class Physiotherapist {
     @Column(name = "years_experience")
     private Integer yearsExperience;
 
+    @Min(0)
     private Double fees;
 
     @OneToOne
@@ -55,7 +62,4 @@ public class Physiotherapist {
     @JsonIgnore
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "physiotherapistId")
-    private Set<Therapy> therapies = new HashSet<>();
 }

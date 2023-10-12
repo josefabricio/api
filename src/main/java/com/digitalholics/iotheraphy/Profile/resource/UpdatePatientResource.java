@@ -6,7 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdatePatientResource {
-    private Integer id;
     private String dni;
     private Integer age;
     private String photoUrl;

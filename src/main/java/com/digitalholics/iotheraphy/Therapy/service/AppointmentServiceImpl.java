@@ -1,5 +1,8 @@
 package com.digitalholics.iotheraphy.Therapy.service;
 
+import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Diagnosis;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.DiagnosisRepository;
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Appointment;
 import com.digitalholics.iotheraphy.Therapy.domain.persistence.AppointmentRepository;
 import com.digitalholics.iotheraphy.Therapy.domain.service.AppointmentService;
@@ -9,6 +12,7 @@ import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException
 import com.digitalholics.iotheraphy.Shared.Exception.UnauthorizedException;
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapy.domain.persistence.TherapyRepository;
+import com.digitalholics.iotheraphy.Therapy.resource.Appointment.UpdateAppointmentResource;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
@@ -19,6 +23,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -30,12 +35,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
     private final TherapyRepository therapyRepository;
-
+    private final DiagnosisRepository diagnosisRepository;
     private final Validator validator;
 
-    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, TherapyRepository therapyRepository, Validator validator) {
+    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, TherapyRepository therapyRepository, DiagnosisRepository diagnosisRepository, Validator validator) {
         this.appointmentRepository = appointmentRepository;
         this.therapyRepository = therapyRepository;
+        this.diagnosisRepository = diagnosisRepository;
         this.validator = validator;
     }
 
@@ -80,7 +86,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         Therapy therapy = therapyOptional.orElseThrow(()-> new NotFoundException("This therapy not found with ID: "+ appointmentResource.getTherapyId()));
         Appointment appointment = new Appointment();
 
-        if (therapy.getPatientId().getUser().getUsername().equals(username) || therapy.getPhysiotherapistId().getUser().getUsername().equals(username)){
+        if (therapy.getPatient().getUser().getUsername().equals(username) || therapy.getPhysiotherapist().getUser().getUsername().equals(username)){
             appointment.setDone(appointmentResource.getDone());
             appointment.setTopic(appointmentResource.getTopic());
             appointment.setDiagnosis(appointmentResource.getDiagnosis());
@@ -95,21 +101,31 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment update(Integer appointmentId, Appointment request) {
-        Set<ConstraintViolation<Appointment>> violations = validator.validate(request);
+    public Appointment update(Integer appointmentId, UpdateAppointmentResource request) {
+        Appointment appointment = getById(appointmentId);
 
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
+        if (request.getDone() != null) {
+            appointment.setDone(request.getDone());
+        }
+        if (request.getTopic() != null) {
+            appointment.setTopic(request.getTopic());
+        }
+        if (request.getDiagnosis() != null) {
+            appointment.setDiagnosis(request.getDiagnosis());
+        }
+        if (request.getDate() != null) {
+            appointment.setDate(request.getDate());
+        }
+        if (request.getHour() != null) {
+            appointment.setHour(request.getHour());
+        }
+        if (request.getPlace() != null) {
+            appointment.setPlace(request.getPlace());
+        }
 
-        return appointmentRepository.findById(appointmentId).map(appointment ->
-                        appointmentRepository.save(
-                                appointment.withTopic(request.getTopic())
-                                        .withDiagnosis(request.getDiagnosis())
-                                        .withDone(request.getDone())
-                                        .withPlace(request.getPlace())
-                                        .withHour(request.getHour())
-                                        .withDate(request.getDate())))
-                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, appointmentId));
+
+
+        return appointmentRepository.save(appointment);
     }
 
     @Override
@@ -128,5 +144,27 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public List<Appointment> getAppointmentsByTherapyByPhysiotherapistId(Integer physiotherapistId) {
         return appointmentRepository.findAppointmentsByTherapyByPhysiotherapistId(physiotherapistId);
+    }
+
+    @Override
+    public Appointment updateDiagnosis(Integer appointmentId, String diagnosis) {
+        Appointment appointment = getById(appointmentId);
+
+        if (diagnosis != null) {
+            appointment.setDiagnosis(diagnosis);
+        }
+        if (!appointment.getDone()) {
+            appointment.setDone(true);
+        }
+
+        Diagnosis diagnosisResource = new Diagnosis();
+        diagnosisResource.setDiagnosis(diagnosis);
+        diagnosisResource.setPatient(appointment.getTherapy().getPatient());
+        diagnosisResource.setPhysiotherapist(appointment.getTherapy().getPhysiotherapist());
+        diagnosisResource.setDate(String.valueOf(LocalDate.now()));
+
+        diagnosisRepository.save(diagnosisResource);
+
+        return appointmentRepository.save(appointment);
     }
 }

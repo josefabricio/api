@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.Therapy.resource.Treatment;
 
+import com.digitalholics.iotheraphy.Therapy.resource.Therapy.TherapyResource;
 import lombok.*;
 
 @Getter
@@ -10,7 +11,7 @@ import lombok.*;
 public class TreatmentResource {
 
     private Integer id;
-    private Integer therapyId;
+    private TherapyResource therapy;
     private String videoUrl;
     private String duration;
     private String title;
