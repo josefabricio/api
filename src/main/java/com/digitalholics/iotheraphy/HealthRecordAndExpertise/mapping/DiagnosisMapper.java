@@ -1,11 +1,9 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.mapping;
 
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Diagnosis;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Job;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CreateJobResource;
+
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.DiagnosisResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.JobResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.UpdateJobResource;
+
 import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,7 +1,7 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.service;
 
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Job;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.UpdateCertificationResource;
+
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.UpdateCertificationResource;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;

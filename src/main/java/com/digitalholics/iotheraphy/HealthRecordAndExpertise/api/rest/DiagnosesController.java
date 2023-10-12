@@ -4,9 +4,9 @@ package com.digitalholics.iotheraphy.HealthRecordAndExpertise.api.rest;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Diagnosis;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.DiagnosisService;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.mapping.DiagnosisMapper;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CertificationResource;
+
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.DiagnosisResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.JobResource;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

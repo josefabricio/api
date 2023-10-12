@@ -2,8 +2,10 @@ package com.digitalholics.iotheraphy.HealthRecordAndExpertise.service;
 
 import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Certification;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CreateJobResource;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.UpdateJobResource;
+
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.CreateJobResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.UpdateJobResource;
+
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
