@@ -7,7 +7,7 @@ import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Certification;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.CertificationRepository;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.CertificationService;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.CreateCertificationResource;
+import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.CreateCertificationResource;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
