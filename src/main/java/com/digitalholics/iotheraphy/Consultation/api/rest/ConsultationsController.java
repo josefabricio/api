@@ -45,6 +45,10 @@ public class ConsultationsController {
         return mapper.modelListPage(consultationService.getByPhysiotherapistId(physiotherapistId), pageable);
     }
 
+    @GetMapping("consultationByPhysiotherapistId/{physiotherapistId}")
+    public ConsultationResource getConsultationByPhysiotherapistId(@PathVariable Integer physiotherapistId) {
+        return mapper.toResource(consultationService.getConsultationByPhysiotherapistId(physiotherapistId));
+    }
 
     @PostMapping
     public ResponseEntity<ConsultationResource> createConsultation(@RequestBody CreateConsultationResource resource) {

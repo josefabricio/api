@@ -17,6 +17,8 @@ public interface ConsultationService {
     List<Consultation> getByPatientId(Integer patientId);
     List<Consultation> getByPhysiotherapistId(Integer physiotherapistId);
 
+    Consultation getConsultationByPhysiotherapistId(Integer physiotherapistId);
+
     Consultation create(CreateConsultationResource consultation);
     Consultation update(Integer consultationId, UpdateConsultationResource request);
     ResponseEntity<?> delete(Integer ConsultationId);

@@ -11,6 +11,8 @@ import java.util.List;
 public interface ConsultationRepository extends JpaRepository<Consultation, Integer> {
     Consultation findByTopic(String topic);
 
+    Consultation findConsultationByPhysiotherapistId(Integer physiotherapistId);
+
     List<Consultation> findByPatientId(Integer patientId);
 
     List<Consultation> findByPhysiotherapistId(Integer physiotherapistId);

@@ -78,6 +78,11 @@ public class ConsultationServiceImpl implements ConsultationService {
     }
 
     @Override
+    public Consultation getConsultationByPhysiotherapistId(Integer physiotherapistId) {
+        return consultationRepository.findConsultationByPhysiotherapistId(physiotherapistId);
+    }
+
+    @Override
     public List<Consultation> getByPatientId(Integer patientId) {
         List<Consultation> consultations = consultationRepository.findByPatientId(patientId);
 
