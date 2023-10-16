@@ -17,6 +17,8 @@ public interface TherapyService {
     Page<Therapy> getAll(Pageable pageable);
     List<Therapy> getTherapyByPatientId(Integer patientId);
 
+    Therapy getActiveTherapyByPatientId(Integer patientId);
+
     Therapy getById(Integer therapyId);
 
     Therapy create(CreateTherapyResource therapy);
