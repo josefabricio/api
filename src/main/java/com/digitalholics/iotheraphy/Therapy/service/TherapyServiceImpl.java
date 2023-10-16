@@ -60,6 +60,11 @@ public class TherapyServiceImpl implements TherapyService {
     }
 
     @Override
+    public List<Therapy> getTherapyByPatientId(Integer patientId) {
+        return therapyRepository.findTherapyByPatientId(patientId);
+    }
+
+    @Override
     public Therapy getById(Integer therapyId) {
         return therapyRepository.findById(therapyId)
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, therapyId));

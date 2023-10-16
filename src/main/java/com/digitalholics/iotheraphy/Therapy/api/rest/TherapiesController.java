@@ -3,6 +3,7 @@ package com.digitalholics.iotheraphy.Therapy.api.rest;
 
 import com.digitalholics.iotheraphy.Therapy.domain.service.TherapyService;
 import com.digitalholics.iotheraphy.Therapy.mapping.TherapyMapper;
+import com.digitalholics.iotheraphy.Therapy.resource.Appointment.AppointmentResource;
 import com.digitalholics.iotheraphy.Therapy.resource.Therapy.CreateTherapyResource;
 import com.digitalholics.iotheraphy.Therapy.resource.Therapy.TherapyResource;
 import com.digitalholics.iotheraphy.Therapy.resource.Therapy.UpdateTherapyResource;
@@ -35,6 +36,12 @@ public class TherapiesController {
     @GetMapping("{therapyId}")
     public TherapyResource getTherapyById(@PathVariable Integer therapyId) {
         return mapper.toResource(therapyService.getById(therapyId));
+    }
+
+
+    @GetMapping("byPatientId/{patientId}")
+    public Page<TherapyResource> getPatientByTherapyId(@PathVariable Integer patientId, Pageable pageable) {
+        return mapper.modelListPage(therapyService.getTherapyByPatientId(patientId), pageable);
     }
 
     @PostMapping

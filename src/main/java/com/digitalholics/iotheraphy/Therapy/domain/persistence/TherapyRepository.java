@@ -5,9 +5,10 @@ import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TherapyRepository extends JpaRepository<Therapy, Integer> {
 
-    Therapy findTherapyByPatientId(Integer patientId);
-
+    List<Therapy> findTherapyByPatientId(Integer patientId);
 }
