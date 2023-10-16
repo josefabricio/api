@@ -61,7 +61,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment getAppointmentByTherapyId(Integer therapyId) {
+    public List<Appointment> getAppointmentByTherapyId(Integer therapyId) {
         return appointmentRepository.findAppointmentByTherapyId(therapyId);
     }
 
