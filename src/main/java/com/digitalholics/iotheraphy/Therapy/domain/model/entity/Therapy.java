@@ -32,10 +32,8 @@ public class Therapy {
     @Size(max = 300)
     private String therapyName;
 
-    @NotNull
-    @NotBlank
+
     @Column(name = "appointment_quantity")
-    @Size(max = 300)
     private String appointmentQuantity;
 
 
@@ -49,6 +47,8 @@ public class Therapy {
     @Column(name = "finish_at")
     private String finishAt;
 
+    @NotNull
+    private Boolean finished;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, mappedBy = "therapy")

@@ -86,6 +86,7 @@ public class TherapyServiceImpl implements TherapyService {
         therapy.setAppointmentQuantity(therapyResource.getAppointmentQuantity());
         therapy.setStartAt(therapyResource.getStartAt());
         therapy.setFinishAt(therapyResource.getFinishAt());
+        therapy.setFinished(therapyResource.getFinished());
         therapy.setPatient(patient);
         therapy.setPhysiotherapist(physiotherapist);
 

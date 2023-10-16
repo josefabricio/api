@@ -19,5 +19,6 @@ public class CreateTherapyResource {
     private String appointmentQuantity;
     private String startAt;
     private String finishAt;
+    private Boolean finished;
     private Integer patientId;
 }
