@@ -44,9 +44,9 @@ public class TherapiesController {
         return mapper.modelListPage(therapyService.getTherapyByPatientId(patientId), pageable);
     }
 
-    @GetMapping("activeTherapyByPatientId/{patientId}")
-    public TherapyResource getActiveTherapyByPatientId(@PathVariable Integer patientId) {
-        return mapper.toResource(therapyService.getActiveTherapyByPatientId(patientId));
+    @GetMapping("activeTherapyByPatientId")
+    public TherapyResource getActiveTherapyByPatientId() {
+        return mapper.toResource(therapyService.getActiveTherapyByPatientId());
     }
 
     @PostMapping

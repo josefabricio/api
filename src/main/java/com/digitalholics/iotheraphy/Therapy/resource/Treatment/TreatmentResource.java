@@ -18,4 +18,5 @@ public class TreatmentResource {
     private String description;
     private String day;
     private Boolean viewed;
+
 }

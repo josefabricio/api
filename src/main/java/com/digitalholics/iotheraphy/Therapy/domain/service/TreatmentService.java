@@ -21,6 +21,8 @@ public interface TreatmentService {
 
     List<Treatment> getTreatmentByTherapyId(Integer therapyId);
 
+    Treatment getTreatmentByDateAndTherapyId(Integer therapyId, String date);
+
     Treatment update(Integer treatmentId, UpdateTreatmentResource request);
 
     ResponseEntity<?> delete(Integer treatmentId);

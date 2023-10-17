@@ -32,6 +32,10 @@ public class Therapy {
     @Size(max = 300)
     private String therapyName;
 
+    @NotNull
+    @NotBlank
+    private String description;
+
 
     @Column(name = "appointment_quantity")
     private String appointmentQuantity;

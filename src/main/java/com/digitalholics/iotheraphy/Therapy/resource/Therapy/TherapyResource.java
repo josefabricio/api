@@ -10,17 +10,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TherapyResource {
-
-
     private Integer id;
-
-
     private String therapyName;
-
+    private String description;
     private String appointmentQuantity;
-
     private String startAt;
-
     private String finishAt;
     private Boolean finished;
     private PatientResource patient;

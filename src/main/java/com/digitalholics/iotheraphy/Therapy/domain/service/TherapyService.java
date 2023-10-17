@@ -17,7 +17,7 @@ public interface TherapyService {
     Page<Therapy> getAll(Pageable pageable);
     List<Therapy> getTherapyByPatientId(Integer patientId);
 
-    Therapy getActiveTherapyByPatientId(Integer patientId);
+    Therapy getActiveTherapyByPatientId();
 
     Therapy getById(Integer therapyId);
 

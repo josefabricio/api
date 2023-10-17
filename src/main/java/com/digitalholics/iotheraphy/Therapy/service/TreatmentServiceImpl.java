@@ -108,6 +108,11 @@ public class TreatmentServiceImpl implements TreatmentService {
     }
 
     @Override
+    public Treatment getTreatmentByDateAndTherapyId(Integer therapyId, String date) {
+        return treatmentRepository.findTreatmentByDateAndTherapyId(therapyId, date);
+    }
+
+    @Override
     public Treatment update(Integer treatmentId, UpdateTreatmentResource request) {
         Treatment treatment = getById(treatmentId);
         if (request.getTitle() != null) {

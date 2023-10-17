@@ -1,10 +1,11 @@
 package com.digitalholics.iotheraphy.Therapy.service;
 
-import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
+import com.digitalholics.iotheraphy.Security.Domain.Persistence.UserRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -38,12 +40,15 @@ public class TherapyServiceImpl implements TherapyService {
 
     private final PhysiotherapistRepository physiotherapistRepository;
 
+    private final UserRepository userRepository;
+
     private final Validator validator;
 
-    public TherapyServiceImpl(TherapyRepository therapyRepository, PatientRepository patientRepository, PhysiotherapistRepository physiotherapistRepository, Validator validator) {
+    public TherapyServiceImpl(TherapyRepository therapyRepository, PatientRepository patientRepository, PhysiotherapistRepository physiotherapistRepository, UserRepository userRepository, Validator validator) {
         this.therapyRepository = therapyRepository;
         this.patientRepository = patientRepository;
         this.physiotherapistRepository = physiotherapistRepository;
+        this.userRepository = userRepository;
         this.validator = validator;
     }
 
@@ -65,8 +70,19 @@ public class TherapyServiceImpl implements TherapyService {
     }
 
     @Override
-    public Therapy getActiveTherapyByPatientId(Integer patientId) {
-        return therapyRepository.findActiveTherapyByPatientId(patientId);
+    public Therapy getActiveTherapyByPatientId() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+            String username = userDetails.getUsername();
+            Optional<User> userOptional = userRepository.findByUsername(username);
+            User user = userOptional.orElseThrow(() -> new NotFoundException("User not found for username: " + username));
+            Optional<Patient> patientOptional = patientRepository.findByUserId(user.getId());
+            Patient patient = patientOptional.orElseThrow(() -> new NotFoundException("User not found patient for username: " + username));
+
+            return therapyRepository.findActiveTherapyByPatientId(patient.getId());
+        }
+        throw new ResourceNotFoundException("No se encontró un paciente autenticado.");
     }
 
     @Override
@@ -93,6 +109,7 @@ public class TherapyServiceImpl implements TherapyService {
 
         Therapy therapy = new Therapy();
         therapy.setTherapyName(therapyResource.getTherapyName());
+        therapy.setDescription(therapyResource.getDescription());
         therapy.setAppointmentQuantity(therapyResource.getAppointmentQuantity());
         therapy.setStartAt(therapyResource.getStartAt());
         therapy.setFinishAt(therapyResource.getFinishAt());

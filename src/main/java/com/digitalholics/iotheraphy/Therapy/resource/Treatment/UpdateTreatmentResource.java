@@ -15,5 +15,4 @@ public class UpdateTreatmentResource {
     private String description;
     private String day;
     private Boolean viewed;
-
 }

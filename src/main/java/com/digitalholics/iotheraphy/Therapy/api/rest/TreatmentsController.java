@@ -41,6 +41,10 @@ public class TreatmentsController {
         return mapper.modelListPage(treatmentService.getTreatmentByTherapyId(therapyId), pageable);
     }
 
+    @GetMapping("byDate/{date}/TherapyId/{therapyId}")
+    public  TreatmentResource getTreatmentByDateAndTherapyId(@PathVariable String date, @PathVariable Integer therapyId) {
+        return mapper.toResource(treatmentService.getTreatmentByDateAndTherapyId(therapyId, date));
+    }
 
     @PostMapping
     public ResponseEntity<TreatmentResource> createTreatment(@RequestBody CreateTreatmentResource resource) {

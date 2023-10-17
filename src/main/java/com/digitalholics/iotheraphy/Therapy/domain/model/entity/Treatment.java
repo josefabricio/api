@@ -49,7 +49,6 @@ public class Treatment {
     @Column(name = "viewed")
     private Boolean viewed;
 
-
     @ManyToOne
     @JoinColumn(name = "therapy_id")
     @JsonIgnore
