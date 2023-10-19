@@ -60,6 +60,16 @@ public class TherapyServiceImpl implements TherapyService {
     }
 
     @Override
+    public List<Therapy> getTherapyByPatientId(Integer patientId) {
+        return therapyRepository.findTherapyByPatientId(patientId);
+    }
+
+    @Override
+    public Therapy getActiveTherapyByPatientId(Integer patientId) {
+        return therapyRepository.findActiveTherapyByPatientId(patientId);
+    }
+
+    @Override
     public Therapy getById(Integer therapyId) {
         return therapyRepository.findById(therapyId)
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, therapyId));
@@ -86,6 +96,7 @@ public class TherapyServiceImpl implements TherapyService {
         therapy.setAppointmentQuantity(therapyResource.getAppointmentQuantity());
         therapy.setStartAt(therapyResource.getStartAt());
         therapy.setFinishAt(therapyResource.getFinishAt());
+        therapy.setFinished(therapyResource.getFinished());
         therapy.setPatient(patient);
         therapy.setPhysiotherapist(physiotherapist);
 

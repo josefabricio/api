@@ -22,7 +22,7 @@ public class TherapyResource {
     private String startAt;
 
     private String finishAt;
-
+    private Boolean finished;
     private PatientResource patient;
     private PhysiotherapistResource physiotherapist;
 }

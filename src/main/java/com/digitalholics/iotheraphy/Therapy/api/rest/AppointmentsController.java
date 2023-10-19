@@ -37,8 +37,8 @@ public class AppointmentsController {
     }
 
     @GetMapping("byTherapyId/{therapyId}")
-    public AppointmentResource getAppointmentByTherapyId(@PathVariable Integer therapyId) {
-        return mapper.toResource(appointmentService.getAppointmentByTherapyId(therapyId));
+    public Page<AppointmentResource> getAppointmentByTherapyId(@PathVariable Integer therapyId, Pageable pageable) {
+        return mapper.modelListPage(appointmentService.getAppointmentByTherapyId(therapyId), pageable);
     }
 
 

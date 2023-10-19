@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.Therapy.domain.service;
 
+import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Appointment;
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapy.resource.Therapy.CreateTherapyResource;
 import com.digitalholics.iotheraphy.Therapy.resource.Therapy.UpdateTherapyResource;
@@ -14,6 +15,9 @@ public interface TherapyService {
     List<Therapy> getAll();
 
     Page<Therapy> getAll(Pageable pageable);
+    List<Therapy> getTherapyByPatientId(Integer patientId);
+
+    Therapy getActiveTherapyByPatientId(Integer patientId);
 
     Therapy getById(Integer therapyId);
 

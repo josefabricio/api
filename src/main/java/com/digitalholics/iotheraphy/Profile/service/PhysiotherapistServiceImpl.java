@@ -1,6 +1,8 @@
 package com.digitalholics.iotheraphy.Profile.service;
 
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
+import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Profile.domain.service.PhysiotherapistService;
 import com.digitalholics.iotheraphy.Profile.resource.CreatePhysiotherapistResource;
@@ -28,13 +30,15 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
     private static final String ENTITY = "Physiotherapist";
 
     private final PhysiotherapistRepository physiotherapistRepository;
+    private final PatientRepository patientRepository;
     private final UserRepository userRepository;
 
 
     private final Validator validator;
 
-    public PhysiotherapistServiceImpl(PhysiotherapistRepository physiotherapistRepository, UserRepository userRepository, Validator validator) {
+    public PhysiotherapistServiceImpl(PhysiotherapistRepository physiotherapistRepository, PatientRepository patientRepository, UserRepository userRepository, Validator validator) {
         this.physiotherapistRepository = physiotherapistRepository;
+        this.patientRepository = patientRepository;
         this.userRepository = userRepository;
         this.validator = validator;
     }
@@ -76,8 +80,9 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
 
         Physiotherapist physiotherapistWithDni = physiotherapistRepository.findPhysiotherapistByDni(physiotherapistResource.getDni());
+        Patient patientWithDni = patientRepository.findPatientByDni(physiotherapistResource.getDni());
 
-        if(physiotherapistWithDni != null)
+        if(physiotherapistWithDni != null || patientWithDni != null)
             throw new ResourceValidationException(ENTITY,
                     "A physiotherapist with the same Dni first name already exists.");
 
@@ -87,7 +92,7 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
         physiotherapist.setDni(physiotherapistResource.getDni());
         physiotherapist.setLocation(physiotherapistResource.getLocation());
         physiotherapist.setBirthdayDate(physiotherapistResource.getBirthdayDate());
-        physiotherapist.setPhotoUrl(" ");
+        physiotherapist.setPhotoUrl(physiotherapistResource.getPhotoUrl());
         physiotherapist.setConsultationQuantity(0);
         physiotherapist.setSpecialization(physiotherapistResource.getSpecialization());
         physiotherapist.setYearsExperience(physiotherapistResource.getYearsExperience());
@@ -101,39 +106,17 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
     public Physiotherapist update(Integer physiotherapistId, UpdatePhysiotherapistResource request) {
         Physiotherapist physiotherapist = getById(physiotherapistId);
 
-        if (request.getDni() != null) {
-            physiotherapist.setDni(request.getDni());
-        }
-        if (request.getAge() != null) {
-            physiotherapist.setAge(request.getAge());
-        }
-        if (request.getPhotoUrl() != null) {
-            physiotherapist.setPhotoUrl(request.getPhotoUrl());
-        }
-        if (request.getPatientQuantity() != null) {
-            physiotherapist.setPatientQuantity(request.getPatientQuantity());
-        }
-        if (request.getLocation() != null) {
-            physiotherapist.setLocation(request.getLocation());
-        }
-        if (request.getBirthdayDate() != null) {
-            physiotherapist.setBirthdayDate(request.getBirthdayDate());
-        }
-        if (request.getRating() != null) {
-            physiotherapist.setRating(request.getRating());
-        }
-        if (request.getSpecialization() != null) {
-            physiotherapist.setSpecialization(request.getSpecialization());
-        }
-        if (request.getYearsExperience() != null) {
-            physiotherapist.setYearsExperience(request.getYearsExperience());
-        }
-        if (request.getConsultationQuantity() != null) {
-            physiotherapist.setConsultationQuantity(request.getConsultationQuantity());
-        }
-        if (request.getFees() != null) {
-            physiotherapist.setFees(request.getFees());
-        }
+        physiotherapist.setDni(request.getDni() != null ? request.getDni() : physiotherapist.getDni());
+        physiotherapist.setAge(request.getAge() != null ? request.getAge() : physiotherapist.getAge());
+        physiotherapist.setPhotoUrl(request.getPhotoUrl() != null ? request.getPhotoUrl() : physiotherapist.getPhotoUrl());
+        physiotherapist.setPatientQuantity(request.getPatientQuantity() != null ? request.getPatientQuantity() : physiotherapist.getPatientQuantity());
+        physiotherapist.setLocation(request.getLocation() != null ? request.getLocation() : physiotherapist.getLocation());
+        physiotherapist.setBirthdayDate(request.getBirthdayDate() != null ? request.getBirthdayDate() : physiotherapist.getBirthdayDate());
+        physiotherapist.setRating(request.getRating() != null ? request.getRating() : physiotherapist.getRating());
+        physiotherapist.setSpecialization(request.getSpecialization() != null ? request.getSpecialization() : physiotherapist.getSpecialization());
+        physiotherapist.setYearsExperience(request.getYearsExperience() != null ? request.getYearsExperience() : physiotherapist.getYearsExperience());
+        physiotherapist.setConsultationQuantity(request.getConsultationQuantity() != null ? request.getConsultationQuantity() : physiotherapist.getConsultationQuantity());
+        physiotherapist.setFees(request.getFees() != null ? request.getFees() : physiotherapist.getFees());
 
         return physiotherapistRepository.save(physiotherapist);
     }
