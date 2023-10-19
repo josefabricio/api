@@ -12,5 +12,5 @@ public class JobResource {
     private Integer id;
     private PhysiotherapistResource physiotherapist;
     private String position;
-    private String Organization;
+    private String organization;
 }
