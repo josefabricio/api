@@ -75,7 +75,7 @@ public class PatientServiceImpl implements PatientService {
         if (principal instanceof UserDetails) {
             UserDetails userDetails = (UserDetails) principal;
             String username = userDetails.getUsername();
-            return patientRepository.findPatientByDni(username);
+            return patientRepository.findPatientsByUserUsername(username);
         }
         throw new ResourceNotFoundException("No se encontró un paciente autenticado.");
     }

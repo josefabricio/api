@@ -1,7 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.api.rest;
 
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
 import com.digitalholics.iotheraphy.Profile.mapping.PatientMapper;
 import com.digitalholics.iotheraphy.Profile.resource.CreatePatientResource;
@@ -28,8 +27,8 @@ public class PatientsController {
     }
 
     @GetMapping("/profile")
-    public Patient getLoggedInPatientProfile() {
-        return patientService.getLoggedInPatient();
+    public PatientResource getLoggedInPatientProfile() {
+        return mapper.toResource(patientService.getLoggedInPatient());
     }
 
     @GetMapping
