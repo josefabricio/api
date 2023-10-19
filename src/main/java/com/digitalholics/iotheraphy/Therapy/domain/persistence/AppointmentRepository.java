@@ -1,6 +1,7 @@
 package com.digitalholics.iotheraphy.Therapy.domain.persistence;
 
 import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Appointment;
+import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Treatment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 
     @Query("select a from Appointment  a where a.therapy.physiotherapist.id = :physiotherapistId")
     List<Appointment> findAppointmentsByTherapyByPhysiotherapistId(Integer physiotherapistId);
+
+    @Query("select a from Appointment  a where a.therapy.id = :therapyId and a.date = :date")
+    Appointment findAppointmentByDateAndTherapyId(Integer therapyId, String date);
 
 }
