@@ -143,6 +143,16 @@
 			<version>1.6.12</version>
 		</dependency>
 
+
+		<!--stripe-->
+		<!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>23.10.0</version>
+		</dependency>
+
+
     </dependencies>
 
 	<build>
