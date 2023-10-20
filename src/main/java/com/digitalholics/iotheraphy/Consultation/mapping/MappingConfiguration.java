@@ -7,4 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class MappingConfiguration {
     @Bean
     public ConsultationMapper consultationMapper() { return new ConsultationMapper();}
+
+    @Bean
+    public AvailableHourMapper availableHourMapper() { return new AvailableHourMapper();}
 }

@@ -118,6 +118,7 @@ public class TherapyServiceImpl implements TherapyService {
         therapy.setPhysiotherapist(physiotherapist);
 
 
+
        return therapyRepository.save(therapy);
     }
 
