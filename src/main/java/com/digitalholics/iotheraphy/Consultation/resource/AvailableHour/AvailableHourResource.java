@@ -1,9 +1,6 @@
 package com.digitalholics.iotheraphy.Consultation.resource.AvailableHour;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.resource.PhysiotherapistResource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter

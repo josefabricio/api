@@ -5,7 +5,6 @@ import com.digitalholics.iotheraphy.Consultation.domain.persistence.AvailableHou
 import com.digitalholics.iotheraphy.Consultation.domain.service.AvailableHourService;
 import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.CreateAvailableHourResource;
 import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.UpdateAvailableHourResource;
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;

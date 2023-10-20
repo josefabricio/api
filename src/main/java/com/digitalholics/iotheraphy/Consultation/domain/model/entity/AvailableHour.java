@@ -26,5 +26,4 @@ public class AvailableHour {
     @JsonIgnore
     private Physiotherapist physiotherapist;
 
-//    private Consultation consultation;
 }

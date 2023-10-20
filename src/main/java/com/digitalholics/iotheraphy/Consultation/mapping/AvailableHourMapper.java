@@ -1,11 +1,9 @@
 package com.digitalholics.iotheraphy.Consultation.mapping;
 
 import com.digitalholics.iotheraphy.Consultation.domain.model.entity.AvailableHour;
-import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
 import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.AvailableHourResource;
-import com.digitalholics.iotheraphy.Consultation.resource.ConsultationResource;
-import com.digitalholics.iotheraphy.Consultation.resource.CreateConsultationResource;
-import com.digitalholics.iotheraphy.Consultation.resource.UpdateConsultationResource;
+import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.CreateAvailableHourResource;
+import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.UpdateAvailableHourResource;
 import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,11 +21,11 @@ public class AvailableHourMapper implements Serializable {
         return mapper.map(model, AvailableHourResource.class);
     }
 
-    public AvailableHour toModel(CreateConsultationResource resource) {
+    public AvailableHour toModel(CreateAvailableHourResource resource) {
         return mapper.map(resource, AvailableHour.class);
     }
 
-    public AvailableHour toModel(UpdateConsultationResource resource) {
+    public AvailableHour toModel(UpdateAvailableHourResource resource) {
         return mapper.map(resource, AvailableHour.class);
     }
 

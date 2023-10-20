@@ -10,4 +10,7 @@ import java.util.List;
 public interface AvailableHourRepository extends JpaRepository<AvailableHour, Integer> {
 
     List<AvailableHour> findByPhysiotherapistId(Integer physiotherapistId);
+
+
+
 }
