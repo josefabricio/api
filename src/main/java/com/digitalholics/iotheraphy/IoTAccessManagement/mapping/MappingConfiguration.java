@@ -7,4 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class MappingConfiguration {
     @Bean
     public IotDeviceMapper iotDeviceMapper() { return new IotDeviceMapper();}
+
+    @Bean
+    public ResultMapper ResultMapper() { return new ResultMapper();}
 }
