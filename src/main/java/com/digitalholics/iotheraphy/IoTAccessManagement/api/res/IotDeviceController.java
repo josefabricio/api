@@ -46,7 +46,7 @@ public class IotDeviceController {
     }
 
     @DeleteMapping("{iotDeviceId}")
-    public ResponseEntity<?> deleteConsultation(@PathVariable Integer iotDeviceId) {
+    public ResponseEntity<?> deleteIotDevice(@PathVariable Integer iotDeviceId) {
         return iotDeviceService.delete(iotDeviceId);
     }
 }
