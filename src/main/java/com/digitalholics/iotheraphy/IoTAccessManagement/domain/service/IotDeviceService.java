@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-
 public interface IotDeviceService {
     List<IotDevice> getAll();
     Page<IotDevice> getAll(Pageable pageable);

@@ -12,41 +12,43 @@ import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class IotDeviceServiceImpl implements IotDeviceService {
 
     private static final String ENTITY = "IoTDevice";
 
-    private final IotDeviceRepository iotDeviceRepositoryl;
+    private final IotDeviceRepository iotDeviceRepository;
     private final Validator validator;
 
-    public IotDeviceServiceImpl(IotDeviceRepository iotDeviceRepositoryl, Validator validator) {
-        this.iotDeviceRepositoryl = iotDeviceRepositoryl;
+    public IotDeviceServiceImpl(IotDeviceRepository iotDeviceRepository, Validator validator) {
+        this.iotDeviceRepository = iotDeviceRepository;
         this.validator = validator;
     }
 
     @Override
     public List<IotDevice> getAll() {
-        return iotDeviceRepositoryl.findAll();
+        return iotDeviceRepository.findAll();
     }
 
     @Override
     public Page<IotDevice> getAll(Pageable pageable) {
-        return iotDeviceRepositoryl.findAll(pageable);
+        return iotDeviceRepository.findAll(pageable);
     }
 
     @Override
     public IotDevice getById(Integer iotDeviceId) {
-        return iotDeviceRepositoryl.findById(iotDeviceId)
+        return iotDeviceRepository.findById(iotDeviceId)
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, iotDeviceId));
     }
 
     @Override
     public IotDevice getByTemperature(String temperature) {
-        return iotDeviceRepositoryl.findByTemperature(temperature);
+        return iotDeviceRepository.findByTemperature(temperature);
     }
 
     @Override
@@ -63,7 +65,7 @@ public class IotDeviceServiceImpl implements IotDeviceService {
         iotDevice.setPulse(createIotDeviceResource.getPulse());
         iotDevice.setHumidity(createIotDeviceResource.getHumidity());
 
-        return iotDeviceRepositoryl.save(iotDevice);
+        return iotDeviceRepository.save(iotDevice);
     }
 
     @Override
@@ -75,13 +77,13 @@ public class IotDeviceServiceImpl implements IotDeviceService {
         iotDevice.setPulse(request.getPulse() != null ? request.getPulse() : iotDevice.getPulse());
         iotDevice.setHumidity(request.getHumidity() != null ? request.getHumidity() : iotDevice.getHumidity());
 
-        return iotDeviceRepositoryl.save(iotDevice);
+        return iotDeviceRepository.save(iotDevice);
     }
 
     @Override
     public ResponseEntity<?> delete(Integer iotDeviceId) {
-        return iotDeviceRepositoryl.findById(iotDeviceId).map(iotDevice -> {
-            iotDeviceRepositoryl.delete(iotDevice);
+        return iotDeviceRepository.findById(iotDeviceId).map(iotDevice -> {
+            iotDeviceRepository.delete(iotDevice);
             return ResponseEntity.ok().build();
         }).orElseThrow(()-> new ResourceNotFoundException(ENTITY,iotDeviceId));
     }
