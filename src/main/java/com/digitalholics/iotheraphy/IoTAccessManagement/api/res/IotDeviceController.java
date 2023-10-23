@@ -1,7 +1,5 @@
 package com.digitalholics.iotheraphy.IoTAccessManagement.api.res;
 
-import com.digitalholics.iotheraphy.Consultation.resource.CreateConsultationResource;
-import com.digitalholics.iotheraphy.Consultation.resource.UpdateConsultationResource;
 import com.digitalholics.iotheraphy.IoTAccessManagement.domain.service.IotDeviceService;
 import com.digitalholics.iotheraphy.IoTAccessManagement.mapping.IotDeviceMapper;
 import com.digitalholics.iotheraphy.IoTAccessManagement.resource.CreateIotDeviceResource;
