@@ -29,6 +29,8 @@ public interface AppointmentService {
     List<Appointment> getAppointmentsByTherapyByPatientId(Integer patientId);
     List<Appointment> getAppointmentsByTherapyByPhysiotherapistId(Integer physiotherapistId);
 
+    Appointment getAppointmentByDateAndTherapyId(Integer therapyId, String date);
+
     Appointment updateDiagnosis(Integer appointmentId, String diagnosis);
 
 }

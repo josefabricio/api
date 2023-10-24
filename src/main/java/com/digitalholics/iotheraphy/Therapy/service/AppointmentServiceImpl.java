@@ -147,6 +147,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public Appointment getAppointmentByDateAndTherapyId(Integer therapyId, String date) {
+        return appointmentRepository.findAppointmentByDateAndTherapyId(therapyId, date);
+    }
+
+    @Override
     public Appointment updateDiagnosis(Integer appointmentId, String diagnosis) {
         Appointment appointment = getById(appointmentId);
 

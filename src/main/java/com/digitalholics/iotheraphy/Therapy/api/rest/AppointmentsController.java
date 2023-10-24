@@ -7,6 +7,7 @@ import com.digitalholics.iotheraphy.Therapy.mapping.AppointmentMapper;
 import com.digitalholics.iotheraphy.Therapy.resource.Appointment.AppointmentResource;
 import com.digitalholics.iotheraphy.Therapy.resource.Appointment.CreateAppointmentResource;
 import com.digitalholics.iotheraphy.Therapy.resource.Appointment.UpdateAppointmentResource;
+import com.digitalholics.iotheraphy.Therapy.resource.Treatment.TreatmentResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -50,6 +51,11 @@ public class AppointmentsController {
     @GetMapping("appointment/therapy-physiotherapist/{physiotherapistId}")
     public Page<AppointmentResource> getAppointmentsByTherapyByPhysiotherapistId(@PathVariable Integer physiotherapistId, Pageable pageable) {
         return mapper.modelListPage(appointmentService.getAppointmentsByTherapyByPhysiotherapistId(physiotherapistId), pageable);
+    }
+
+    @GetMapping("byDate/{date}/TherapyId/{therapyId}")
+    public AppointmentResource getAppointmentByDateAndTherapyId(@PathVariable String date, @PathVariable Integer therapyId) {
+        return mapper.toResource(appointmentService.getAppointmentByDateAndTherapyId(therapyId, date));
     }
 
     @PostMapping
