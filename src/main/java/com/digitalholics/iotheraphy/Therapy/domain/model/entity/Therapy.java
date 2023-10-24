@@ -54,14 +54,6 @@ public class Therapy {
     @NotNull
     private Boolean finished;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "therapy")
-    private Set<Appointment> appointments = new HashSet<>();
-
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "therapy")
-    private Set<Treatment> treatments = new HashSet<>();
-
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
