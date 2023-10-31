@@ -60,7 +60,7 @@ public class ConsultationsController {
             @PathVariable Integer consultationId,
             @RequestBody UpdateConsultationResource request) {
 
-        return new  ResponseEntity<>(mapper.toResource(consultationService.update(consultationId,request)), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toResource(consultationService.update(consultationId,request)), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{consultationId}")

@@ -74,14 +74,14 @@ public class AvailableHourServiceImpl implements AvailableHourService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-        Optional<Physiotherapist> physiotherapistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotherapistByUserUsername(username));
-        Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with email: " + username));
+//        Optional<Physiotherapist> physiotherapistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotherapistByUserUsername(username));
+//        Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with email: " + username));
 
-//        Optional<Physiotherapist> physiotherapistOptional = physiotherapistRepository.findById(availableHourResource.getPhysiotherapistId());
-//        Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with ID: " + availableHourResource.getPhysiotherapistId()));
+            Optional<Physiotherapist> physiotherapistOptional = physiotherapistRepository.findById(availableHourResource.getPhysiotherapistId());
+            Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with ID: " + availableHourResource.getPhysiotherapistId()));
 
         AvailableHour availableHour = new AvailableHour();
-        availableHour.setDays(availableHourResource.getDays());
+        availableHour.setDay(availableHourResource.getDay());
         availableHour.setHours(availableHourResource.getHours());
         availableHour.setPhysiotherapist(physiotherapist);
 
@@ -99,7 +99,7 @@ public class AvailableHourServiceImpl implements AvailableHourService {
         return availableHourRepository.findById(availableHourId).map(availableHour ->
                         availableHourRepository.save(
                                 availableHour.withHours(request.getHours())
-                                        .withDays(request.getDays()))).orElseThrow(() -> new ResourceNotFoundException(ENTITY, availableHourId));
+                                        .withDay(request.getDay()))).orElseThrow(() -> new ResourceNotFoundException(ENTITY, availableHourId));
     }
 
     @Override

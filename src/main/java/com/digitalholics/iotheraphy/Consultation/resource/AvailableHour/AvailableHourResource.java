@@ -11,7 +11,7 @@ import lombok.*;
 public class AvailableHourResource {
 
     private Integer id;
-    private Integer hours;
-    private String days;
+    private String hours;
+    private String day;
     private PhysiotherapistResource physiotherapist;
 }

@@ -17,9 +17,9 @@ public class AvailableHour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer hours;
+    private String hours;
 
-    private String days;
+    private String day;
 
     @ManyToOne
     @JoinColumn(name = "physiotherapist_id")

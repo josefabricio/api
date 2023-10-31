@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateAvailableHourResource {
-    private Integer hours;
-    private String days;
+    private String hours;
+    private String day;
 }

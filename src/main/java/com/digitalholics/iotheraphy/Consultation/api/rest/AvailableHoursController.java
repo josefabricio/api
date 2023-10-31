@@ -1,10 +1,12 @@
 package com.digitalholics.iotheraphy.Consultation.api.rest;
 
 
+import com.digitalholics.iotheraphy.Consultation.domain.model.entity.AvailableHour;
 import com.digitalholics.iotheraphy.Consultation.domain.service.AvailableHourService;
 import com.digitalholics.iotheraphy.Consultation.mapping.AvailableHourMapper;
 import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.AvailableHourResource;
 import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.CreateAvailableHourResource;
+import com.digitalholics.iotheraphy.Consultation.resource.AvailableHour.UpdateAvailableHourResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,7 +48,10 @@ public class AvailableHoursController {
         return new ResponseEntity<>(mapper.toResource(availableHourService.create(resource)), HttpStatus.CREATED);
     }
 
-
+    @PutMapping("{availableHourId}")
+    public AvailableHourResource updateAvailableHour(@PathVariable Integer availableHourId, @RequestBody UpdateAvailableHourResource resource){
+        return mapper.toResource(availableHourService.update(availableHourId, resource));
+    }
 
     @DeleteMapping("{availableHourId}")
     public ResponseEntity<?> deleteAvailableHour(@PathVariable Integer availableHourId) {
