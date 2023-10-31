@@ -74,11 +74,11 @@ public class AvailableHourServiceImpl implements AvailableHourService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-//        Optional<Physiotherapist> physiotherapistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotherapistByUserUsername(username));
-//        Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with email: " + username));
+        Optional<Physiotherapist> physiotherapistOptional = Optional.ofNullable(physiotherapistRepository.findPhysiotherapistByUserUsername(username));
+        Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with email: " + username));
 
-            Optional<Physiotherapist> physiotherapistOptional = physiotherapistRepository.findById(availableHourResource.getPhysiotherapistId());
-            Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with ID: " + availableHourResource.getPhysiotherapistId()));
+//            Optional<Physiotherapist> physiotherapistOptional = physiotherapistRepository.findById(availableHourResource.getPhysiotherapistId());
+//            Physiotherapist physiotherapist = physiotherapistOptional.orElseThrow(() -> new NotFoundException("Not found physiotherapist with ID: " + availableHourResource.getPhysiotherapistId()));
 
         AvailableHour availableHour = new AvailableHour();
         availableHour.setDay(availableHourResource.getDay());
