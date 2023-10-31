@@ -41,6 +41,11 @@ public class PhysiotherapistController {
         return mapper.toResource(physiotherapistService.getByUserId(userId));
     }
 
+    @GetMapping("/profile")
+    public PhysiotherapistResource getLoggedInPhysiotherapistProfile() {
+        return mapper.toResource(physiotherapistService.getLoggedInPhysiotherapist());
+    }
+
     @PostMapping("registration-physiotherapist")
     public ResponseEntity<PhysiotherapistResource> createPhysiotherapist(@RequestBody CreatePhysiotherapistResource resource) {
         return new ResponseEntity<>(mapper.toResource(physiotherapistService.create(resource)), HttpStatus.CREATED);

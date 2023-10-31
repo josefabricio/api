@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -62,6 +63,17 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
     public Physiotherapist getByUserId(Integer userId) {
         return physiotherapistRepository.findByUserId(userId)
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY, userId));    }
+
+    @Override
+    public Physiotherapist getLoggedInPhysiotherapist() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+            String username = userDetails.getUsername();
+            return physiotherapistRepository.findPhysiotherapistByUserUsername(username);
+        }
+        throw new ResourceNotFoundException("No se encontró un fisioterapeuta autenticado.");
+    }
 
     @Override
     public Physiotherapist create(CreatePhysiotherapistResource physiotherapistResource) {

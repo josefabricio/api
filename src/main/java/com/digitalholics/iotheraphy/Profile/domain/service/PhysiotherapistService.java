@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.domain.service;
 
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.resource.CreatePhysiotherapistResource;
 import com.digitalholics.iotheraphy.Profile.resource.UpdatePhysiotherapistResource;
@@ -14,6 +15,8 @@ public interface PhysiotherapistService {
     Page<Physiotherapist> getAll(Pageable pageable);
     Physiotherapist getById(Integer patientId);
     Physiotherapist getByUserId(Integer userId);
+    Physiotherapist getLoggedInPhysiotherapist();
+
     Physiotherapist create(CreatePhysiotherapistResource physiotherapist);
     Physiotherapist update(Integer physiotherapistId, UpdatePhysiotherapistResource request);
     ResponseEntity<?> delete(Integer physiotherapistId);
