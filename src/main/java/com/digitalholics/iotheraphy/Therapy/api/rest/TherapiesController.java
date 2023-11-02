@@ -49,6 +49,11 @@ public class TherapiesController {
         return mapper.toResource(therapyService.getActiveTherapyByPatientId());
     }
 
+    @GetMapping("byPhysioAndPatient/{physiotherapistId}/{patientId}")
+    public TherapyResource getTherapyByPhysiotherapistIdAndPatientId(@PathVariable Integer patientId, @PathVariable Integer physiotherapistId){
+        return mapper.toResource((therapyService.getTherapyByPhysiotherapistIdAndPatientId(physiotherapistId, patientId)));
+    }
+
     @PostMapping
     public ResponseEntity<TherapyResource> createTherapy(@RequestBody CreateTherapyResource resource) {
         return new ResponseEntity<>(mapper.toResource(therapyService.create((resource))), HttpStatus.CREATED);

@@ -19,6 +19,8 @@ public interface TherapyService {
 
     Therapy getActiveTherapyByPatientId();
 
+    Therapy getTherapyByPhysiotherapistIdAndPatientId(Integer physiotherapistId, Integer patientId);
+
     Therapy getById(Integer therapyId);
 
     Therapy create(CreateTherapyResource therapy);
