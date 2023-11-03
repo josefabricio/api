@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://root:DX3h5rpbGSMAbqH4Y7qL@containers-us-west-102.railway.app:7905/railway?useSSL=false&serverTimeZone=UTC&useLegacyDatetimeCode=false
+    url: jdbc:mysql://root:12AAdBA6f-cbE5Fa1G6f26aaD1h2EHFF@mysql.railway.internal:3306/railway?useSSL=false&serverTimeZone=UTC&useLegacyDatetimeCode=false
     username: root
-    password: DX3h5rpbGSMAbqH4Y7qL
+    password: 12AAdBA6f-cbE5Fa1G6f26aaD1h2EHFF
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
