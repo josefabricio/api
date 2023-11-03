@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.mapping;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.resource.*;
 import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,17 @@ public class PhysiotherapistMapper implements Serializable {
     @Autowired
     EnhancedModelMapper mapper;
 
-    public PhysiotherapistResource toResource(Physiotheraphist model) {
+    public PhysiotherapistResource toResource(Physiotherapist model) {
         return mapper.map(model, PhysiotherapistResource.class);
     }
 
-    public Physiotheraphist toModel(CreatePhysiotherapistResource resource) {
-        return mapper.map(resource, Physiotheraphist.class);
+    public Physiotherapist toModel(CreatePhysiotherapistResource resource) {
+        return mapper.map(resource, Physiotherapist.class);
     }
 
-    public Physiotheraphist toModel(UpdatePhysiotherapistResource resource) { return mapper.map(resource, Physiotheraphist.class);}
+    public Physiotherapist toModel(UpdatePhysiotherapistResource resource) { return mapper.map(resource, Physiotherapist.class);}
 
-    public Page<PhysiotherapistResource> modelListPage(List<Physiotheraphist> modelList, Pageable pageable) {
+    public Page<PhysiotherapistResource> modelListPage(List<Physiotherapist> modelList, Pageable pageable) {
         return new PageImpl<>(mapper.mapList(modelList, PhysiotherapistResource.class), pageable, modelList.size());
     }
 
