@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://root:DX3h5rpbGSMAbqH4Y7qL@containers-us-west-102.railway.app:7905/railway?useSSL=false&serverTimeZone=UTC&useLegacyDatetimeCode=false
+    url: jdbc:mysql://root:DeCgde55BaCAfEFEH4HcED2H5FeF241F@roundhouse.proxy.rlwy.net:41324/railway?useSSL=false&serverTimeZone=UTC&useLegacyDatetimeCode=false
     username: root
-    password: DX3h5rpbGSMAbqH4Y7qL
+    password: DeCgde55BaCAfEFEH4HcED2H5FeF241F
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -21,4 +21,7 @@ spring:
         refresh-token:
           expiration: 604800000 # 7 dias
 
-
+  stripe:
+    key:
+      public: pk_test_51O2RELCjW3JsFKOWismIZke5hD6PoJ5u2jaOx19m1AbSYgyw9pA3GLxl0Yb83MK0G3IVCiUp0UIzM2TOwMws1u2O00WNxCfi4U
+      secret: sk_test_51O2RELCjW3JsFKOWQB07Yvz339GJ7ISXQUfzVazmHFWv0HQnIyoUMgOUO20BqbZQ6GSKPpxVCZhtyhveKhcfnxuD00RlBVEhRx

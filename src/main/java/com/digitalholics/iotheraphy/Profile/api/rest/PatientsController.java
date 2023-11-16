@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.api.rest;
 
+
 import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
 import com.digitalholics.iotheraphy.Profile.mapping.PatientMapper;
 import com.digitalholics.iotheraphy.Profile.resource.CreatePatientResource;
@@ -10,11 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/v1/", produces = "application/json")
+@RequestMapping(value = "/api/v1/patients", produces = "application/json")
 @Tag(name = "Patients", description = "Create, read, update and delete patients")
 public class PatientsController {
     private final PatientService patientService;
@@ -26,33 +26,40 @@ public class PatientsController {
         this.mapper = mapper;
     }
 
-    @GetMapping("allPatients")
+    @GetMapping("/profile")
+    public PatientResource getLoggedInPatientProfile() {
+        return mapper.toResource(patientService.getLoggedInPatient());
+    }
+
+    @GetMapping
     public Page<PatientResource> getAllPatients(Pageable pageable) {
         return mapper.modelListPage(patientService.getAll(), pageable);
     }
 
-    @GetMapping("patientById/{patientId}")
+    @GetMapping("{patientId}")
     public PatientResource getPatientById(@PathVariable Integer patientId) {
         return mapper.toResource(patientService.getById(patientId));
     }
 
-    @GetMapping("patientByUserId/userId={value}")
-    public PatientResource getPatientByUserId(@PathVariable Integer value) {
-        return mapper.toResource(patientService.getByUserId(value));
+    @GetMapping("byUserId/{userId}")
+    public PatientResource getPatientByUserId(@PathVariable Integer userId) {
+        return mapper.toResource(patientService.getByUserId(userId));
     }
 
     @PostMapping("registration-patient")
     public ResponseEntity<PatientResource> createPatient(@RequestBody CreatePatientResource resource) {
-        return new ResponseEntity<>(mapper.toResource(patientService.create(mapper.toModel(resource))), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toResource(patientService.create(resource)), HttpStatus.CREATED);
     }
 
-    @PutMapping("updatePatientById{patientId}")
-    public PatientResource updatePatient(@PathVariable Integer patientId,
-                                         @RequestBody UpdatePatientResource resource) {
-        return mapper.toResource(patientService.update(patientId, mapper.toModel(resource)));
+    @PatchMapping("{patientId}")
+    public ResponseEntity<PatientResource> patchPatient(
+            @PathVariable Integer patientId,
+            @RequestBody UpdatePatientResource request) {
+
+        return new  ResponseEntity<>(mapper.toResource(patientService.update(patientId,request)), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("deletePatientById/{patientId}")
+    @DeleteMapping("{patientId}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer patientId) {
         return patientService.delete(patientId);
     }

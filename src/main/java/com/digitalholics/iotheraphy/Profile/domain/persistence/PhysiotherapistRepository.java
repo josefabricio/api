@@ -1,21 +1,19 @@
 package com.digitalholics.iotheraphy.Profile.domain.persistence;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotheraphist;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface PhysiotherapistRepository extends JpaRepository<Physiotheraphist,Integer> {
+public interface PhysiotherapistRepository extends JpaRepository<Physiotherapist,Integer> {
 
 
-    Physiotheraphist findPhysiotheraphistByDni(String dni);
+    Physiotherapist findPhysiotherapistByDni(String dni);
 
-    Physiotheraphist findPhysiotheraphistByUserUsername(String username);
+    Physiotherapist findPhysiotherapistByUserUsername(String username);
 
-    Optional<Physiotheraphist> findByUserId(Integer userId);
+    Optional<Physiotherapist> findByUserId(Integer userId);
 
 }

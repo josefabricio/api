@@ -3,6 +3,8 @@ package com.digitalholics.iotheraphy.Profile.service;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Profile.domain.service.PatientService;
+import com.digitalholics.iotheraphy.Profile.resource.CreatePatientResource;
+import com.digitalholics.iotheraphy.Profile.resource.UpdatePatientResource;
 import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import com.digitalholics.iotheraphy.Security.Domain.Persistence.UserRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -67,8 +70,19 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient create(Patient patient) {
-        Set<ConstraintViolation<Patient>> violations = validator.validate(patient);
+    public Patient getLoggedInPatient() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+            String username = userDetails.getUsername();
+            return patientRepository.findPatientsByUserUsername(username);
+        }
+        throw new ResourceNotFoundException("No se encontró un paciente autenticado.");
+    }
+
+    @Override
+    public Patient create(CreatePatientResource patientResource) {
+        Set<ConstraintViolation<CreatePatientResource>> violations = validator.validate(patientResource);
 
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
@@ -80,34 +94,39 @@ public class PatientServiceImpl implements PatientService {
 
         User user = userOptional.orElseThrow(() -> new NotFoundException("User not found for username: " + username));
 
-        patient.setUser(user);
 
-        Patient patientWithDni = patientRepository.findPatientByDni(patient.getDni());
+
+        Patient patientWithDni = patientRepository.findPatientByDni(patientResource.getDni());
 
         if(patientWithDni != null)
             throw new ResourceValidationException(ENTITY,
                     "A patient with the same Dni first name already exists.");
+
+        Patient patient = new Patient();
+        patient.setUser(user);
+        patient.setAge(patientResource.getAge());
+        patient.setDni(patientResource.getDni());
+        patient.setLocation(patientResource.getLocation());
+        patient.setBirthdayDate(patientResource.getBirthdayDate());
+        patient.setPhotoUrl(patientResource.getPhotoUrl());
+        patient.setAppointmentQuantity(0);
 
         return patientRepository.save(patient);
 
     }
 
     @Override
-    public Patient update(Integer patientId, Patient request) {
-        Set<ConstraintViolation<Patient>> violations = validator.validate(request);
+    public Patient update(Integer patientId, UpdatePatientResource request) {
+        Patient patient = getById(patientId);
 
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
+        patient.setDni(request.getDni() != null ? request.getDni() : patient.getDni());
+        patient.setAge(request.getAge() != null ? request.getAge() : patient.getAge());
+        patient.setPhotoUrl(request.getPhotoUrl() != null ? request.getPhotoUrl() : patient.getPhotoUrl());
+        patient.setAppointmentQuantity(request.getAppointmentQuantity() != null ? request.getAppointmentQuantity() : patient.getAppointmentQuantity());
+        patient.setLocation(request.getLocation() != null ? request.getLocation() : patient.getLocation());
+        patient.setBirthdayDate(request.getBirthdayDate() != null ? request.getBirthdayDate() : patient.getBirthdayDate());
 
-        return patientRepository.findById(patientId).map( patient ->
-                        patientRepository.save(
-                                patient.withAge(request.getAge()).
-                                        withPhotoUrl(request.getPhotoUrl()).
-                                        withBirthdayDate(request.getBirthdayDate()).
-                                        withLocation(request.getLocation()).
-                                        withAppointmentQuantity(request.getAppointmentQuantity())
-                                ))
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY,patientId));
+        return patientRepository.save(patient);
     }
 
     @Override
