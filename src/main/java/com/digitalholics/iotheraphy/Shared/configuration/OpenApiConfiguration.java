@@ -17,7 +17,7 @@ public class OpenApiConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
-                .allowedOrigins(https://theraphyweb-e2dc7.web.app/")
+                .allowedOrigins("https://theraphyweb-e2dc7.web.app/")
                 .allowedMethods("*")
                 .allowedHeaders("*");
     }
