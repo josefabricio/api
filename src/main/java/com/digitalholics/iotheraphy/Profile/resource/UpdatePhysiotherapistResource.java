@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.Profile.resource;
 
+import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +18,5 @@ public class UpdatePhysiotherapistResource {
     private Integer patientQuantity;
     private Integer yearsExperience;
     private Double fees;
+    private User user;
 }

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
+
 public interface AvailableHourService {
     List<AvailableHour> getAll();
     Page<AvailableHour> getAll(Pageable pageable);

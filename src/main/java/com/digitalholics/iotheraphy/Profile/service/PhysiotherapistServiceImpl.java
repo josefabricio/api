@@ -7,6 +7,7 @@ import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRe
 import com.digitalholics.iotheraphy.Profile.domain.service.PhysiotherapistService;
 import com.digitalholics.iotheraphy.Profile.resource.CreatePhysiotherapistResource;
 import com.digitalholics.iotheraphy.Profile.resource.UpdatePhysiotherapistResource;
+
 import com.digitalholics.iotheraphy.Security.Domain.Model.Entity.User;
 import com.digitalholics.iotheraphy.Security.Domain.Persistence.UserRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
@@ -129,9 +130,12 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
         physiotherapist.setYearsExperience(request.getYearsExperience() != null ? request.getYearsExperience() : physiotherapist.getYearsExperience());
         physiotherapist.setConsultationQuantity(request.getConsultationQuantity() != null ? request.getConsultationQuantity() : physiotherapist.getConsultationQuantity());
         physiotherapist.setFees(request.getFees() != null ? request.getFees() : physiotherapist.getFees());
+        physiotherapist.getUser().setFirstname(request.getUser().getFirstname() != null ? request.getUser().getFirstname() : physiotherapist.getUser().getFirstname());
+        //physiotherapist.getUser().setUsername(request.getUser().getUsername() != null ? request.getUser().getUsername() : physiotherapist.getUser().getUsername());
 
         return physiotherapistRepository.save(physiotherapist);
     }
+
 
     @Override
     public ResponseEntity<?> delete(Integer physiotherapistId) {

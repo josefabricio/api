@@ -1,6 +1,5 @@
 package com.digitalholics.iotheraphy.Profile.domain.service;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.resource.CreatePhysiotherapistResource;
 import com.digitalholics.iotheraphy.Profile.resource.UpdatePhysiotherapistResource;
