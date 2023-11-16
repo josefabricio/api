@@ -9,5 +9,5 @@ public class MappingConfiguration {
     public IotDeviceMapper iotDeviceMapper() { return new IotDeviceMapper();}
 
     @Bean
-    public ResultMapper ResultMapper() { return new ResultMapper();}
+    public IotResultMapper ResultMapper() { return new IotResultMapper();}
 }

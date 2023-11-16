@@ -13,6 +13,8 @@ import java.util.List;
 public interface IotDeviceService {
     List<IotDevice> getAll();
     Page<IotDevice> getAll(Pageable pageable);
+
+    List<IotDevice> getByTherapyIdAndDate(Integer therapyId, String date);
     IotDevice getById(Integer iotDeviceId);
     IotDevice getByTemperature(String temperature);
     IotDevice create(CreateIotDeviceResource iotDeviceResource);

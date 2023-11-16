@@ -1,5 +1,6 @@
 package com.digitalholics.iotheraphy.IoTAccessManagement.service;
 
+import com.digitalholics.iotheraphy.Consultation.domain.model.entity.Consultation;
 import com.digitalholics.iotheraphy.IoTAccessManagement.domain.model.entity.IotDevice;
 import com.digitalholics.iotheraphy.IoTAccessManagement.domain.persistence.IotDeviceRepository;
 import com.digitalholics.iotheraphy.IoTAccessManagement.domain.service.IotDeviceService;
@@ -14,8 +15,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class IotDeviceServiceImpl implements IotDeviceService {
@@ -41,6 +45,16 @@ public class IotDeviceServiceImpl implements IotDeviceService {
     }
 
     @Override
+    public List<IotDevice> getByTherapyIdAndDate(Integer therapyId, String date) {
+
+
+        return iotDeviceRepository.findIotResultsByTherapyByDate(therapyId,date);
+
+    }
+
+
+
+    @Override
     public IotDevice getById(Integer iotDeviceId) {
         return iotDeviceRepository.findById(iotDeviceId)
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, iotDeviceId));
@@ -64,7 +78,8 @@ public class IotDeviceServiceImpl implements IotDeviceService {
         iotDevice.setDistance(createIotDeviceResource.getDistance());
         iotDevice.setPulse(createIotDeviceResource.getPulse());
         iotDevice.setHumidity(createIotDeviceResource.getHumidity());
-
+        iotDevice.setTherapyId(createIotDeviceResource.getTherapyId());
+        //iotDevice.setDate(createIotDeviceResource.getDate());
         return iotDeviceRepository.save(iotDevice);
     }
 
@@ -76,6 +91,9 @@ public class IotDeviceServiceImpl implements IotDeviceService {
         iotDevice.setDistance(request.getDistance() != null ? request.getDistance() : iotDevice.getDistance());
         iotDevice.setPulse(request.getPulse() != null ? request.getPulse() : iotDevice.getPulse());
         iotDevice.setHumidity(request.getHumidity() != null ? request.getHumidity() : iotDevice.getHumidity());
+        iotDevice.setTherapyId(request.getTherapyId() != null ? request.getTherapyId() : iotDevice.getId());
+        iotDevice.setDate(request.getDate() != null ? request.getDate() : iotDevice.getDate());
+
 
         return iotDeviceRepository.save(iotDevice);
     }
