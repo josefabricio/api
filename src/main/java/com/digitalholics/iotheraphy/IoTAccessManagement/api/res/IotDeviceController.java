@@ -31,6 +31,8 @@ public class IotDeviceController {
         return mapper.modelListPage(iotDeviceService.getAll(), pageable);
     }
 
+
+
     @GetMapping("byTherapyId/{therapyId}/Date/{date}")
     public Page<IotDeviceResource> getByTherapyIdAndDate(@PathVariable Integer therapyId,@PathVariable String date, Pageable pageable) {
         return mapper.modelListPage(iotDeviceService.getByTherapyIdAndDate(therapyId, date), pageable);
