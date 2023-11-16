@@ -13,4 +13,5 @@ public class CreateIotDeviceResource {
     private String distance;
     private String pulse;
     private String humidity;
+    private Integer therapyId;
 }

@@ -4,6 +4,7 @@ import com.digitalholics.iotheraphy.IoTAccessManagement.domain.service.IotDevice
 import com.digitalholics.iotheraphy.IoTAccessManagement.mapping.IotDeviceMapper;
 import com.digitalholics.iotheraphy.IoTAccessManagement.resource.CreateIotDeviceResource;
 import com.digitalholics.iotheraphy.IoTAccessManagement.resource.IotDeviceResource;
+import com.digitalholics.iotheraphy.Therapy.resource.Therapy.TherapyResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,11 @@ public class IotDeviceController {
     @GetMapping
     public Page<IotDeviceResource> getAllConsultations(Pageable pageable) {
         return mapper.modelListPage(iotDeviceService.getAll(), pageable);
+    }
+
+    @GetMapping("byTherapyId/{therapyId}/Date/{date}")
+    public Page<IotDeviceResource> getByTherapyIdAndDate(@PathVariable Integer therapyId,@PathVariable String date, Pageable pageable) {
+        return mapper.modelListPage(iotDeviceService.getByTherapyIdAndDate(therapyId, date), pageable);
     }
 
     @GetMapping("{iotDeviceId}")

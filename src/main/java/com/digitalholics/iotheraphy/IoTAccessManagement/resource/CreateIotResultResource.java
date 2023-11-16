@@ -7,12 +7,13 @@ import lombok.*;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class IotDeviceResource {
+public class CreateIotResultResource {
     private Integer id;
-    private String temperature;
-    private String distance;
-    private String pulse;
+    private String iotDeviceId;
     private String humidity;
-    private Integer therapyId;
-    private String date;
+    private String temperature;
+    private String pulse;
+    private String mapAmplitude;
+    private String mapFrequency;
+    private String mapDuration;
 }

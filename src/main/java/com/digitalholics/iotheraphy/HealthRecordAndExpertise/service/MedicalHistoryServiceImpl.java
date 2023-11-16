@@ -7,6 +7,7 @@ import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.Medi
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.CreateMedicalHistoryResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.UpdateMedicalHistoryResource;
 import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
@@ -74,11 +75,9 @@ public class MedicalHistoryServiceImpl implements MedicalHistoryService {
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
 
-        Optional<Patient> patientOptional = Optional.ofNullable(patientRepository.findPatientsByUserUsername(username));
-        Patient patient = patientOptional.orElseThrow(() -> new NotFoundException("Not found patient with email: " + username));
+        Optional<Patient> patientOptional =patientRepository.findById(Integer.parseInt(medicalHistoryResource.getPatientId()));
+        Patient patient = patientOptional.orElseThrow(() -> new NotFoundException("Not found patient with ID: " + medicalHistoryResource.getPatientId()));
 
         MedicalHistory medicalHistoryWithPatient = medicalHistoryRepository.findByPatientId(patient.getId());
 
