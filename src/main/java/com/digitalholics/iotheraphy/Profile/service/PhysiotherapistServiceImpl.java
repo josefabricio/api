@@ -130,7 +130,11 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
         physiotherapist.setYearsExperience(request.getYearsExperience() != null ? request.getYearsExperience() : physiotherapist.getYearsExperience());
         physiotherapist.setConsultationQuantity(request.getConsultationQuantity() != null ? request.getConsultationQuantity() : physiotherapist.getConsultationQuantity());
         physiotherapist.setFees(request.getFees() != null ? request.getFees() : physiotherapist.getFees());
-        physiotherapist.getUser().setFirstname(request.getUser().getFirstname() != null ? request.getUser().getFirstname() : physiotherapist.getUser().getFirstname());
+       // physiotherapist.getUser().setFirstname(request.getUser().getFirstname() != null ? request.getUser().getFirstname() : physiotherapist.getUser().getFirstname());
+        if (request.getUser() != null) {
+            physiotherapist.getUser().setFirstname(request.getUser().getFirstname() != null ? request.getUser().getFirstname() : physiotherapist.getUser().getFirstname());
+            // otras propiedades del usuario...
+        }
         //physiotherapist.getUser().setUsername(request.getUser().getUsername() != null ? request.getUser().getUsername() : physiotherapist.getUser().getUsername());
 
         return physiotherapistRepository.save(physiotherapist);
