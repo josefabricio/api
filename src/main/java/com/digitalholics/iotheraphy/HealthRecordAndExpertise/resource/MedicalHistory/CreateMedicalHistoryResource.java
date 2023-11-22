@@ -1,6 +1,5 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory;
 
-import com.digitalholics.iotheraphy.Profile.resource.PatientResource;
 import lombok.*;
 
 @Getter

@@ -1,10 +1,6 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory;
 
-import com.digitalholics.iotheraphy.Profile.resource.PatientResource;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import com.digitalholics.iotheraphy.Profiless.resource.PatientResource;
 import lombok.*;
 
 @Getter

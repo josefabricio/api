@@ -2,8 +2,8 @@ package com.digitalholics.iotheraphy.HealthRecordAndExpertise.service;
 
 
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.UpdateCertificationResource;
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
-import com.digitalholics.iotheraphy.Profile.domain.persistence.PhysiotherapistRepository;
+import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
+import com.digitalholics.iotheraphy.Profiless.domain.persistence.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Certification;

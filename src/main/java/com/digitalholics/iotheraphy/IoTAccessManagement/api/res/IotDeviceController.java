@@ -4,7 +4,6 @@ import com.digitalholics.iotheraphy.IoTAccessManagement.domain.service.IotDevice
 import com.digitalholics.iotheraphy.IoTAccessManagement.mapping.IotDeviceMapper;
 import com.digitalholics.iotheraphy.IoTAccessManagement.resource.CreateIotDeviceResource;
 import com.digitalholics.iotheraphy.IoTAccessManagement.resource.IotDeviceResource;
-import com.digitalholics.iotheraphy.Therapy.resource.Therapy.TherapyResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

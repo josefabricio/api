@@ -6,9 +6,8 @@ import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.MedicalHistoryService;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.CreateMedicalHistoryResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.UpdateMedicalHistoryResource;
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Physiotherapist;
-import com.digitalholics.iotheraphy.Profile.domain.persistence.PatientRepository;
+import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profiless.domain.persistence.PatientRepository;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;
@@ -16,8 +15,6 @@ import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 

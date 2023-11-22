@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity;
 
-import com.digitalholics.iotheraphy.Profile.domain.model.entity.Patient;
+import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

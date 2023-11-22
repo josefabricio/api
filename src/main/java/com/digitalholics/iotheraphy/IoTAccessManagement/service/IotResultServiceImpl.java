@@ -1,6 +1,5 @@
 package com.digitalholics.iotheraphy.IoTAccessManagement.service;
 
-import com.digitalholics.iotheraphy.IoTAccessManagement.domain.model.entity.IotDevice;
 import com.digitalholics.iotheraphy.IoTAccessManagement.domain.model.entity.IotResult;
 import com.digitalholics.iotheraphy.IoTAccessManagement.domain.persistence.IotDeviceRepository;
 import com.digitalholics.iotheraphy.IoTAccessManagement.domain.persistence.IotResultRepository;
@@ -9,8 +8,7 @@ import com.digitalholics.iotheraphy.IoTAccessManagement.resource.CreateIotResult
 import com.digitalholics.iotheraphy.IoTAccessManagement.resource.UpdateIotResultResource;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
-import com.digitalholics.iotheraphy.Therapy.domain.model.entity.Treatment;
-import com.digitalholics.iotheraphy.Therapy.domain.persistence.TreatmentRepository;
+import com.digitalholics.iotheraphy.Therapysss.domain.persistence.TreatmentRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;

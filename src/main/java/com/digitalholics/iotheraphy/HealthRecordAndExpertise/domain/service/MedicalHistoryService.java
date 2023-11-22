@@ -1,7 +1,5 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service;
 
-import com.digitalholics.iotheraphy.Consultation.resource.CreateConsultationResource;
-import com.digitalholics.iotheraphy.Consultation.resource.UpdateConsultationResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.MedicalHistory;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.CreateMedicalHistoryResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.UpdateMedicalHistoryResource;
