@@ -5,8 +5,8 @@ import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.Update
 
 import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profiless.domain.persistence.PhysiotherapistRepository;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Job;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.JobRepository;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.JobService;

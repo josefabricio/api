@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.HealthRecordAndExpertise.mapping;
 
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Certification;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.CertificationResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Certification.CreateCertificationResource;

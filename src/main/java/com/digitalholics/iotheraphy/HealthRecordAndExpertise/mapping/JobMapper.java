@@ -3,7 +3,7 @@ package com.digitalholics.iotheraphy.HealthRecordAndExpertise.mapping;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.CreateJobResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.JobResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.Job.UpdateJobResource;
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

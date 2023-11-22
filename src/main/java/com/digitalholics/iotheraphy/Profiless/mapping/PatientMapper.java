@@ -1,7 +1,7 @@
 package com.digitalholics.iotheraphy.Profiless.mapping;
 
 import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 //import com.theraphy.backend.profile.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profiless.resource.CreatePatientResource;
 import com.digitalholics.iotheraphy.Profiless.resource.PatientResource;

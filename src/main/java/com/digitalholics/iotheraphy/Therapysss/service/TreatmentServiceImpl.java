@@ -1,8 +1,8 @@
 package com.digitalholics.iotheraphy.Therapysss.service;
 
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
-import com.digitalholics.iotheraphy.Shared.Exception.UnauthorizedException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.shared.Exception.UnauthorizedException;
 import com.digitalholics.iotheraphy.Therapysss.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapysss.domain.model.entity.Treatment;
 import com.digitalholics.iotheraphy.Therapysss.domain.persistence.TherapyRepository;

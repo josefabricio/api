@@ -4,7 +4,7 @@ import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.CreateMedicalHistoryResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.MedicalHistoryResource;
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.resource.MedicalHistory.UpdateMedicalHistoryResource;
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

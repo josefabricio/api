@@ -1,7 +1,7 @@
 package com.digitalholics.iotheraphy.Socialsss.mapping;
 
 
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 import com.digitalholics.iotheraphy.Socialsss.domain.model.entity.Review;
 import com.digitalholics.iotheraphy.Socialsss.resource.CreateReviewResource;
 import com.digitalholics.iotheraphy.Socialsss.resource.ReviewResource;

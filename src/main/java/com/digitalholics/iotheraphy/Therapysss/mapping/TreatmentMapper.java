@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.Therapysss.mapping;
 
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 import com.digitalholics.iotheraphy.Therapysss.domain.model.entity.Treatment;
 import com.digitalholics.iotheraphy.Therapysss.resource.Treatment.CreateTreatmentResource;
 import com.digitalholics.iotheraphy.Therapysss.resource.Treatment.TreatmentResource;

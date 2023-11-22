@@ -2,7 +2,7 @@ package com.digitalholics.iotheraphy.Profiless.mapping;
 
 import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
 import com.digitalholics.iotheraphy.Profiless.resource.*;
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

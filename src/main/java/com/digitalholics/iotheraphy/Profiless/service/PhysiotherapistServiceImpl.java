@@ -10,8 +10,8 @@ import com.digitalholics.iotheraphy.Profiless.resource.UpdatePhysiotherapistReso
 
 import com.digitalholics.iotheraphy.security.domain.model.aggregates.User;
 import com.digitalholics.iotheraphy.security.infrastructure.persistance.jpa.repositories.UserRepository;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;

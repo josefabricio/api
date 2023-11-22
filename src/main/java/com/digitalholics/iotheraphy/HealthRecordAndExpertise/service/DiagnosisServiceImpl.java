@@ -5,8 +5,8 @@ import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.
 import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.service.DiagnosisService;
 import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.Profiless.domain.persistence.PatientRepository;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.http.ResponseEntity;
