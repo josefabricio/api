@@ -1,4 +1,4 @@
-package com.digitalholics.iotheraphy.Payment.domain.model;
+package com.digitalholics.iotheraphy.subscription.domain.model.aggregates;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
-package com.digitalholics.iotheraphy.Payment.service;
+package com.digitalholics.iotheraphy.subscription.application.internal.queryservices;
 
-import com.digitalholics.iotheraphy.Payment.domain.model.PaymentIntentDTO;
+import com.digitalholics.iotheraphy.subscription.domain.model.aggregates.PaymentIntentDTO;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class PaymentServiceImpl {
+public class PaymentQueryServiceImpl {
 
 
 //    @Value("${stripe.key.secret}")

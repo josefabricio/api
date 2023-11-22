@@ -1,11 +1,9 @@
-package com.digitalholics.iotheraphy.Payment.api;
+package com.digitalholics.iotheraphy.subscription.interfaces;
 
-import com.digitalholics.iotheraphy.Payment.domain.model.PaymentIntentDTO;
-import com.digitalholics.iotheraphy.Payment.domain.service.PaymentService;
-import com.digitalholics.iotheraphy.Payment.service.PaymentServiceImpl;
+import com.digitalholics.iotheraphy.subscription.domain.model.aggregates.PaymentIntentDTO;
+import com.digitalholics.iotheraphy.subscription.application.internal.queryservices.PaymentQueryServiceImpl;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentsController {
 
     final
-    PaymentServiceImpl paymentService;
+    PaymentQueryServiceImpl paymentService;
 
-    public PaymentsController(PaymentServiceImpl paymentService) {
+    public PaymentsController(PaymentQueryServiceImpl paymentService) {
         this.paymentService = paymentService;
     }
 
