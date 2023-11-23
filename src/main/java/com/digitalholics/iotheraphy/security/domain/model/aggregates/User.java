@@ -1,6 +1,5 @@
 package com.digitalholics.iotheraphy.security.domain.model.aggregates;
 
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
 import com.digitalholics.iotheraphy.security.domain.model.entities.Token;
 import com.digitalholics.iotheraphy.security.domain.model.valueobjects.Role;
 import jakarta.persistence.*;

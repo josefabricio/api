@@ -1,7 +1,7 @@
 package com.digitalholics.iotheraphy.Socialsss.resource;
 
-import com.digitalholics.iotheraphy.Profiless.resource.PatientResource;
-import com.digitalholics.iotheraphy.Profiless.resource.PhysiotherapistResource;
+import com.digitalholics.iotheraphy.profile.interfaces.rest.resources.PatientResource;
+import com.digitalholics.iotheraphy.profile.interfaces.rest.resources.PhysiotherapistResource;
 import lombok.*;
 
 @Getter

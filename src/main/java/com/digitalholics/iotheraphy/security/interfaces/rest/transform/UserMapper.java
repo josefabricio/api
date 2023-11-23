@@ -2,7 +2,7 @@ package com.digitalholics.iotheraphy.security.interfaces.rest.transform;
 
 import com.digitalholics.iotheraphy.security.domain.model.aggregates.User;
 import com.digitalholics.iotheraphy.security.interfaces.rest.resources.UserResource;
-import com.digitalholics.iotheraphy.Shared.EnhancedModelMapper;
+import com.digitalholics.iotheraphy.shared.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

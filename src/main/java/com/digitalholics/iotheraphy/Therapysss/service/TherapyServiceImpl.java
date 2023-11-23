@@ -1,13 +1,13 @@
 package com.digitalholics.iotheraphy.Therapysss.service;
 
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
-import com.digitalholics.iotheraphy.Profiless.domain.persistence.PatientRepository;
-import com.digitalholics.iotheraphy.Profiless.domain.persistence.PhysiotherapistRepository;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Patient;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Physiotherapist;
+import com.digitalholics.iotheraphy.profile.infrastructure.jpa.repositories.PatientRepository;
+import com.digitalholics.iotheraphy.profile.infrastructure.jpa.repositories.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.security.domain.model.aggregates.User;
 import com.digitalholics.iotheraphy.security.infrastructure.persistance.jpa.repositories.UserRepository;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
 import com.digitalholics.iotheraphy.Therapysss.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapysss.domain.persistence.TherapyRepository;
 import com.digitalholics.iotheraphy.Therapysss.domain.service.TherapyService;

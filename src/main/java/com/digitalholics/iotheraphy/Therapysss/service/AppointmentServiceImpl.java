@@ -1,14 +1,14 @@
 package com.digitalholics.iotheraphy.Therapysss.service;
 
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Diagnosis;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.DiagnosisRepository;
+import com.digitalholics.iotheraphy.profile.domain.model.entities.Diagnosis;
+import com.digitalholics.iotheraphy.profile.infrastructure.jpa.repositories.DiagnosisRepository;
 import com.digitalholics.iotheraphy.Therapysss.domain.model.entity.Appointment;
 import com.digitalholics.iotheraphy.Therapysss.domain.persistence.AppointmentRepository;
 import com.digitalholics.iotheraphy.Therapysss.domain.service.AppointmentService;
 import com.digitalholics.iotheraphy.Therapysss.resource.Appointment.CreateAppointmentResource;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceNotFoundException;
-import com.digitalholics.iotheraphy.Shared.Exception.ResourceValidationException;
-import com.digitalholics.iotheraphy.Shared.Exception.UnauthorizedException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
+import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
+import com.digitalholics.iotheraphy.shared.Exception.UnauthorizedException;
 import com.digitalholics.iotheraphy.Therapysss.domain.model.entity.Therapy;
 import com.digitalholics.iotheraphy.Therapysss.domain.persistence.TherapyRepository;
 import com.digitalholics.iotheraphy.Therapysss.resource.Appointment.UpdateAppointmentResource;
