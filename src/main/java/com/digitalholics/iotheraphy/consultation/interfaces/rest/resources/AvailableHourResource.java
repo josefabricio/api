@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.consultation.interfaces.rest.resources;
 
-import com.digitalholics.iotheraphy.Profiless.resource.PhysiotherapistResource;
+import com.digitalholics.iotheraphy.profile.interfaces.rest.resources.PhysiotherapistResource;
 import lombok.*;
 
 @Getter

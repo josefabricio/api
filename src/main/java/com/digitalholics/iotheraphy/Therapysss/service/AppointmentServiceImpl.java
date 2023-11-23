@@ -1,7 +1,7 @@
 package com.digitalholics.iotheraphy.Therapysss.service;
 
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.model.entity.Diagnosis;
-import com.digitalholics.iotheraphy.HealthRecordAndExpertise.domain.persistence.DiagnosisRepository;
+import com.digitalholics.iotheraphy.profile.domain.model.entities.Diagnosis;
+import com.digitalholics.iotheraphy.profile.infrastructure.jpa.repositories.DiagnosisRepository;
 import com.digitalholics.iotheraphy.Therapysss.domain.model.entity.Appointment;
 import com.digitalholics.iotheraphy.Therapysss.domain.persistence.AppointmentRepository;
 import com.digitalholics.iotheraphy.Therapysss.domain.service.AppointmentService;

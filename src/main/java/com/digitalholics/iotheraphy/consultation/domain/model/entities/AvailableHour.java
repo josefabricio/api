@@ -1,6 +1,6 @@
 package com.digitalholics.iotheraphy.consultation.domain.model.entities;
 
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Physiotherapist;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;

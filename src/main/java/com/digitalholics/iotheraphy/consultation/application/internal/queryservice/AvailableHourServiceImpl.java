@@ -5,8 +5,8 @@ import com.digitalholics.iotheraphy.consultation.infrastructure.persistence.jpa.
 import com.digitalholics.iotheraphy.consultation.domain.services.AvailableHourService;
 import com.digitalholics.iotheraphy.consultation.interfaces.rest.resources.CreateAvailableHourResource;
 import com.digitalholics.iotheraphy.consultation.interfaces.rest.resources.UpdateAvailableHourResource;
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
-import com.digitalholics.iotheraphy.Profiless.domain.persistence.PhysiotherapistRepository;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Physiotherapist;
+import com.digitalholics.iotheraphy.profile.infrastructure.jpa.repositories.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;

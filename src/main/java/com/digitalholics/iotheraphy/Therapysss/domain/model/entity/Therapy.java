@@ -1,7 +1,7 @@
 package com.digitalholics.iotheraphy.Therapysss.domain.model.entity;
 
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Patient;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Physiotherapist;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

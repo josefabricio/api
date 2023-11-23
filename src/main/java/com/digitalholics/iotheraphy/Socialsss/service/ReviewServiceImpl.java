@@ -1,10 +1,10 @@
 package com.digitalholics.iotheraphy.Socialsss.service;
 
 
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Patient;
-import com.digitalholics.iotheraphy.Profiless.domain.model.entity.Physiotherapist;
-import com.digitalholics.iotheraphy.Profiless.domain.persistence.PatientRepository;
-import com.digitalholics.iotheraphy.Profiless.domain.persistence.PhysiotherapistRepository;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Patient;
+import com.digitalholics.iotheraphy.profile.domain.model.aggregates.Physiotherapist;
+import com.digitalholics.iotheraphy.profile.infrastructure.jpa.repositories.PatientRepository;
+import com.digitalholics.iotheraphy.profile.infrastructure.jpa.repositories.PhysiotherapistRepository;
 import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
 import com.digitalholics.iotheraphy.Socialsss.domain.model.entity.Review;
