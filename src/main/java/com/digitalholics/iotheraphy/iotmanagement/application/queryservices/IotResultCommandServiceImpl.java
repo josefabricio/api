@@ -8,7 +8,7 @@ import com.digitalholics.iotheraphy.iotmanagement.interfaces.rest.resources.Crea
 import com.digitalholics.iotheraphy.iotmanagement.interfaces.rest.resources.UpdateIotResultResource;
 import com.digitalholics.iotheraphy.shared.Exception.ResourceNotFoundException;
 import com.digitalholics.iotheraphy.shared.Exception.ResourceValidationException;
-import com.digitalholics.iotheraphy.Therapysss.domain.persistence.TreatmentRepository;
+import com.digitalholics.iotheraphy.theraphy.domain.persistence.TreatmentRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
